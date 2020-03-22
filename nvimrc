@@ -19,7 +19,13 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
- 
+
+set wildmenu
+set wildignorecase
+set wildmode=full
+
+set foldmethod=indent
+
 set colorcolumn=120
 highlight ColorColumn ctermbg=lightgreen guibg=lightgreen
 highlight clear SignColumn
@@ -30,7 +36,10 @@ set undodir=$HOME/.vim/backup/undo// " Store undo history in a central directory
 set undodir+=. " Alternatively, store undo history in the same directory as the file
 set undolevels=1000 " Save a maximum of 1000 undos
 set undoreload=10000 " Save undo history when reloading a file
- 
+
+set noundofile
+" set clipboard=exclude:.*
+
 " Remappings
 nnoremap D "_dd
 " Previous buffer
@@ -53,7 +62,10 @@ nnoremap [b :bprevious<CR>
 nnoremap ]q :cn<CR>
 nnoremap [q :cp<CR>
 nnoremap <Leader>q :ccl<CR>
- 
+
+nnoremap <Leader>l :set invlist<cr>
+vnoremap p pgvy
+
 call plug#begin('~/.vim/plugged')
  
 Plug 'vim-airline/vim-airline'
@@ -80,6 +92,8 @@ Plug 'moll/vim-bbye'
 
 " Plug 'lyuts/vim-rtags'
 " Plug 'octol/vim-cpp-enhanced-highlight'
+
+Plug 'junegunn/fzf'
 call plug#end()
  
 function! IgnorableDetectIndent()
@@ -124,6 +138,16 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Terminal Color Settings
 if &term =~# '256color' && ( &term =~# '^screen'  || &term =~# '^tmux' )
