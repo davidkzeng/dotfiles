@@ -1,0 +1,14 @@
+# Set default editor to vim
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+# export PATH="$HOME/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:$PATH"
+
+# Gurobi
+# export GRB_LICENSE_FILE=/home/david/gurobi.lic
+# export GUROBI_HOME=/opt/gurobi811/linux64
+# export PATH="${PATH}:${GUROBI_HOME}/bin"
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+
+# Tmux
+alias tmux="tmux -2"

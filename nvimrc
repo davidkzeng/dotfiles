@@ -50,8 +50,8 @@ nnoremap <C-Up> <C-u>
 nnoremap <C-Down> <C-d>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-k>k
-nnoremap <C-l> <C-l>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
  
 nnoremap <C-n> :noh<CR>
  
