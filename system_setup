@@ -1,3 +1,10 @@
 # To Install
     - nvim
     - tmux
+
+# Dotfiles setup
+# Run link_path.sh
+
+# tmux setup
+# Setup ~/.tmux.conf
+# Install tpm: https://github.com/tmux-plugins/tpm
