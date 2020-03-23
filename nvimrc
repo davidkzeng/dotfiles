@@ -24,7 +24,7 @@ set wildmenu
 set wildignorecase
 set wildmode=full
 
-set foldmethod=indent
+" set foldmethod=indent
 
 set colorcolumn=120
 highlight ColorColumn ctermbg=lightgreen guibg=lightgreen
@@ -36,7 +36,7 @@ set undodir=$HOME/.vim/backup/undo// " Store undo history in a central directory
 set undodir+=. " Alternatively, store undo history in the same directory as the file
 set undolevels=1000 " Save a maximum of 1000 undos
 set undoreload=10000 " Save undo history when reloading a file
-silent !mkdir $OME/.vim/backup/undo > /dev/null 2>&1
+silent !mkdir $HOME/.vim/backup/undo > /dev/null 2>&1
 
 set noundofile
 " set clipboard=exclude:.*
