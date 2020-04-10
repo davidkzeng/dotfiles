@@ -5,7 +5,7 @@ export EDITOR="$VISUAL"
 
 alias tmux="tmux -2"
 
-
+export PATH=$HOME/bin:$PATH
 
 # Aliases for simple commands
 

@@ -1,3 +1,5 @@
+# Sets up environment
+
 # Assumes the following dependencies
 # git, tmux
 
