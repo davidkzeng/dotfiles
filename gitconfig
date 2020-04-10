@@ -1,0 +1,7 @@
+[user]
+	email = davidzeng.42@gmail.com
+	name = David Zeng
+[push]
+	default = simple
+[credential]
+	helper = cache --timeout=3600
