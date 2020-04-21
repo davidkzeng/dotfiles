@@ -29,6 +29,9 @@ set wildmode=full
 set colorcolumn=120
 highlight ColorColumn ctermbg=lightgreen guibg=lightgreen
 highlight clear SignColumn
+
+" Permanant gutter column
+set signcolumn=yes
  
 " Persistent undo settings
 set undofile " Save undo history
@@ -41,9 +44,12 @@ silent !mkdir $HOME/.vim/backup/undo > /dev/null 2>&1
 set noundofile
 " set clipboard=exclude:.*
 
+" Lower updatetime for better responsiveness for certain plugins
+set updatetime=1000
+
 " Remappings
 nnoremap D "_dd
-" Previous buffer
+
 nnoremap <C-z> <C-^>
 nnoremap <C-x> :Bdelete<CR>
  
@@ -91,12 +97,9 @@ Plug 'xolox/vim-misc'
 
 Plug 'moll/vim-bbye'
 
-" Plug 'lyuts/vim-rtags'
-" Plug 'octol/vim-cpp-enhanced-highlight'
-
 Plug 'junegunn/fzf'
 call plug#end()
- 
+
 function! IgnorableDetectIndent()
    " Return early for files you wish to ignore 
    DetectIndent
@@ -106,42 +109,44 @@ augroup DetectIndent
     autocmd!
     autocmd BufReadPost * call IgnorableDetectIndent()
 augroup END
- 
+
+" vim-airline settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#whitespace#checks = []
- 
-let g:signify_vcs_list = [ 'hg', 'git' ]
- 
-let g:molokai_original = 1
-let g:rehash256 = 1
- 
-" vim-rtags settings
-" let g:rtagsUseLocationList = 0
 
-" vim-session Settings
+" vim-signify settings
+let g:signify_vcs_list = [ 'hg', 'git' ]
+
+" vim-session settings
 let g:session_autosave = 0
 let g:session_autoload = 0
  
-" coc.nvim settings
+" coc settings
+
+" CoC shortcuts
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
- 
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <Leader>gd <Plug>(coc-diagnostic-info)
+nmap <silent> <Leader>gr <Plug>(coc-rename)
+nmap <silent> <Leader>gf :CocFix<CR>
+
 " CoC Tab Completion
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
- 
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
+" CoC show documentation
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
-
 function! s:show_documentation()
   if &filetype == 'vim'
     execute 'h '.expand('<cword>')
@@ -149,6 +154,10 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" molokai settings
+let g:molokai_original = 1
+let g:rehash256 = 1
 
 " Terminal Color Settings
 if &term =~# '256color' && ( &term =~# '^screen'  || &term =~# '^tmux' )

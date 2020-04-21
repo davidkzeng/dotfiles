@@ -3,10 +3,12 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-alias tmux="tmux -2"
-
 export PATH=$HOME/bin:$PATH
 
-# Aliases for simple commands
+function list-manual-apt() {
+    comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)
+}
 
-alias list-manual-apt="comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)"
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi

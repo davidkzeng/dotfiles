@@ -2,7 +2,7 @@ echo "Started link_files.sh"
 
 dotfiles_dir=$(dirname $(dirname $(realpath "$0")))
 
-to_link=(tmux.conf nvimrc bashrc.common gitconfig)
+to_link=(tmux.conf nvimrc bashrc.common gitconfig bash_aliases)
 for file in "${to_link[@]}"; do
     ln -sf "$dotfiles_dir/$file" "$HOME/.$file"
 done
