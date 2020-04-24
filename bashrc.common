@@ -3,12 +3,13 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-export PATH=$HOME/bin:$PATH
-
-function list-manual-apt() {
-    comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)
-}
+# $HOME/bin/custom_bin symlinked to dotfiles bin/
+export PATH=$HOME/bin/custom_bin:$PATH
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
 fi

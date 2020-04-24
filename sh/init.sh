@@ -1,7 +1,22 @@
-# Sets up environment
+#!/bin/bash
+#
+# Set up system
 
-# Assumes the following dependencies
-# git, tmux
+set -euf -o pipefail
+
+install=0
+while (( "$#" )); do
+    case $1 in
+        -i | --install)
+        install=1
+        shift ;;
+    esac
+done
+
+if [[ $install -eq 1 ]]; then
+    install_dir=$(dirname $(dirname $(realpath "$0")))/install
+    "$install_dir"/install.sh
+fi
 
 sh_dir=$(dirname $(realpath "$0"))
 

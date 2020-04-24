@@ -121,7 +121,9 @@ let g:signify_vcs_list = [ 'hg', 'git' ]
 " vim-session settings
 let g:session_autosave = 0
 let g:session_autoload = 0
- 
+
+let g:indentLine_conceallevel = 0
+
 " coc settings
 
 " CoC shortcuts
