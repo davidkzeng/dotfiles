@@ -1,0 +1,2 @@
+# Dummy File
+# Folder exists only to allow Dropbox selective sync to be used to ignore this folder

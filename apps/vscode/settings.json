@@ -1,0 +1,15 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "search.useIgnoreFiles": false,
+    "window.zoomLevel": 0,
+    "editor.lineNumbers": "relative",
+
+    "latex-workshop.view.pdf.viewer": "tab",
+    "[latex]": {
+        "editor.wordWrap": "on",
+        "editor.wordBasedSuggestions": false
+    },
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.latex.outDir": "%TMPDIR%/build",
+    "latex-workshop.latex.clean.fileTypes": ["*.brf", "*.synctex.gz", "*.aux", "*.bbl", "*.blg", "*.fdb_latexmk", "*.fls", "*.log", "*.out"],
+}

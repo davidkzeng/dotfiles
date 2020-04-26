@@ -7,7 +7,8 @@ for file in "${to_link[@]}"; do
     ln -sf "$dotfiles_dir/$file" "$HOME/.$file"
 done
 
-ln -sf "$dotfiles_dir/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -sf "$dotfiles_dir/apps/vim/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -sf "$dotfiles_dir/apps/vscode/settings.json" "$HOME/.config/Code/User/settings.json"
 
 rm -rf "$HOME/bin"
 mkdir "$HOME/bin"
