@@ -3,6 +3,12 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+HISTSIZE=10000
+HISTFILESIZE=10000
+
 # $HOME/bin/custom_bin symlinked to dotfiles bin/
 export PATH=$HOME/bin/custom_bin:$PATH
 
