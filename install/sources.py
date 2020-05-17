@@ -42,3 +42,5 @@ packages = {
 }
 
 default_install = ['neovim', 'tmux', 'git', 'htop']
+
+# TODO: Handle fzf

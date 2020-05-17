@@ -7,21 +7,22 @@ set -euf -o pipefail
 install=0
 while (( "$#" )); do
     case $1 in
-        -i | --install)
-        install=1
-        shift ;;
+        -i | --install) install=1 ;;
     esac
+    shift
 done
 
+bin_dir=$(dirname $(realpath "$0"))
+
 if [[ $install -eq 1 ]]; then
-    install_dir=$(dirname $(dirname $(realpath "$0")))/install
-    "$install_dir"/install.sh
+    "$bin_dir"/install
 fi
 
-sh_dir=$(dirname $(realpath "$0"))
+sh_dir=$(dirname "$bin_dir")/sh
+dotfiles_dir=$(dirname $(dirname "$bin_dir"))
 
 # Create symlinks for dotfiles
-"$sh_dir"/link_files.sh
+"$sh_dir"/link_files.sh "$dotfiles_dir"
 
 # Add bashrc_base
 if [[ -z $(grep -Fx "source ~/.bashrc_base" $HOME/.bashrc) ]]; then

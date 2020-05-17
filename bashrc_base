@@ -16,6 +16,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Functions can depend on aliases
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi

@@ -6,3 +6,11 @@ function list-apt-repos() {
     (echo /etc/apt/sources.list && find /etc/apt/sources.list.d/ -regex '.*list') | xargs egrep -v '^#|^ *$'
 }
 
+function lfz() {
+    less $(fzf)
+}
+
+function vfz() {
+    vim $(fzf)
+}
+

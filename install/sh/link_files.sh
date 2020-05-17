@@ -1,5 +1,7 @@
 echo ">>> Started link_files.sh"
 
+dotfiles_dir=$1
+
 function safe_link() {
     target=$1
     link=$2
@@ -13,8 +15,6 @@ function safe_link() {
         ln -s "$target" "$link"
     fi
 }
-
-dotfiles_dir=$(dirname $(dirname $(realpath "$0")))
 
 safe_link "$dotfiles_dir" "$HOME/.dotfiles"
 

@@ -1,0 +1,15 @@
+#!/bin/bash
+# Assumes python3 availability
+
+echo ">>> Started install.sh"
+
+if ! which python3; then
+    echo "Install python3 before running"
+    exit 1
+fi
+
+install_dir=$(dirname $(dirname $(realpath "$0")))
+
+sudo python3 "$install_dir/install.py"
+
+echo "<<< Completed install.sh"
