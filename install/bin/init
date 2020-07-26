@@ -24,9 +24,12 @@ dotfiles_dir=$(dirname $(dirname "$bin_dir"))
 # Create symlinks for dotfiles
 "$sh_dir"/link_files.sh "$dotfiles_dir"
 
-# Add bashrc_base
-if [[ -z $(grep -Fx "source ~/.bashrc_base" $HOME/.bashrc) ]]; then
+# Add bashrc_base to zshrc and bashrc
+if [ -e $HOME/.bashrc ] && [[ -z $(grep -Fx "source ~/.bashrc_base" $HOME/.bashrc) ]]; then
     echo "source ~/.bashrc_base" >> $HOME/.bashrc
+fi
+if [ -e $HOME/.zshrc ] && [[ -z $(grep -Fx "source ~/.bashrc_base" $HOME/.zshrc) ]]; then
+    echo "source ~/.bashrc_base" >> $HOME/.zshrc
 fi
 
 "$sh_dir"/init_tmux.sh

@@ -14,3 +14,6 @@ function vfz() {
     vim $(fzf)
 }
 
+function millis() {
+    date +%s%N | cut -b1-13
+}

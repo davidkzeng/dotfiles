@@ -1,13 +1,50 @@
 # Any bashrc settings for a standard environment
+# Compatible with bash and zsh
+
+# Distiguish between bash and zsh
+function is_bash() {
+    [ -n "$BASH_VERSION" ]
+}
+function is_zsh() {
+    [ -n "$ZSH_VERSION" ]
+}
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-# append to the history file, don't overwrite it
-shopt -s histappend
+if is_zsh; then
+    # Initialize color expansion
+    # Use with $fg[green] or %{$fg[green]%}
+    autoload -U colors && colors
+fi
 
+# History File Settings
 HISTSIZE=10000
 HISTFILESIZE=10000
+if is_zsh; then
+    HISTFILE=~/.zsh_history
+    setopt appendhistory
+    setopt incappendhistory # Immediate append instead of on terminal exit
+elif is_bash; then
+    shopt -s histappend
+fi
+
+# Terminal Prompt (with colors)
+if is_zsh; then
+    PROMPT="%{$fg[green]%}%n@%m:%{$fg[blue]%}%~%{$reset_color%}$ "
+    # PROMPT="%n@%m:%~$ "
+elif is_bash; then
+    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    # PS1='\u@\h:\w$ '
+fi
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
 
 # $HOME/bin/custom_bin symlinked to dotfiles bin/
 export PATH=$HOME/bin/custom_bin:$PATH
