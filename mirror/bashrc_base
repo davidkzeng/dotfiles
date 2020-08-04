@@ -57,3 +57,8 @@ fi
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
+
+# Miscellaneous aliases, functions, etc. not worth preserving or generalizing beyond the current system
+if [ -f ~/.bash_local ]; then
+    . ~/.bash_local
+fi

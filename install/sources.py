@@ -38,9 +38,10 @@ packages = {
     'neovim': {'sources': ['apt']},
     'tmux': {'sources': ['apt']},
     'git': {'sources': ['apt']},
-    'htop': {'sources': ['apt']}
+    'htop': {'sources': ['apt']},
+    'zsh': {'sources': ['apt']}
 }
 
-default_install = ['neovim', 'tmux', 'git', 'htop']
+default_install = ['neovim', 'tmux', 'git', 'htop', 'zsh']
 
 # TODO: Handle fzf

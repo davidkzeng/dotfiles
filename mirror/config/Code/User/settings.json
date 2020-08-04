@@ -11,5 +11,16 @@
     },
     "latex-workshop.synctex.afterBuild.enabled": true,
     "latex-workshop.latex.outDir": "%TMPDIR%/build",
-    "latex-workshop.latex.clean.fileTypes": ["*.brf", "*.synctex.gz", "*.aux", "*.bbl", "*.blg", "*.fdb_latexmk", "*.fls", "*.log", "*.out"],
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.brf",
+        "*.synctex.gz",
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.fdb_latexmk",
+        "*.fls",
+        "*.log",
+        "*.out"
+    ],
+    "terminal.integrated.shell.linux": "/usr/bin/zsh",
 }
