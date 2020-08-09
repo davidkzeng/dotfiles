@@ -1,5 +1,4 @@
 set number relativenumber
-set nu rnu
 set cursorline
  
 set backspace=indent,eol,start
@@ -124,7 +123,7 @@ let g:session_autoload = 0
 
 let g:indentLine_conceallevel = 0
 
-" coc settings
+" CoC settings
 
 " CoC shortcuts
 nmap <silent> gd <Plug>(coc-definition)

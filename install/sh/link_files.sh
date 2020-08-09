@@ -8,7 +8,11 @@ function safe_link() {
     link=$2
 
     if [[ -e "$link" ]]; then
-        echo "$link already exists... ignoring"
+        if [[ -L "$link" ]] && [[ "$(readlink $link)" == "$target" ]]; then
+            echo "$link already links to target... ignoring"
+        else
+            echo "$link already exists... ignoring"
+        fi
     elif [[ ! -e "$target" ]]; then
         echo "$target does not exist... ignoring"
     else
@@ -28,7 +32,12 @@ for file in "${to_link[@]}"; do
     safe_link "$home_mirror/$file" "$HOME/.$file"
 done
 
-to_link_config=(config/nvim/init.vim config/nvim/coc-settings.json config/Code/User/settings.json)
+to_link_config=(
+    config/nvim/init.vim
+    config/nvim/coc-settings.json
+    config/Code/User/settings.json
+    config/Code/User/keybindings.json
+)
 for file in "${to_link_config[@]}"; do
     safe_link "$home_mirror/$file" "$HOME/.$file"
 done

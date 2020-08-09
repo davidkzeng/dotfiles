@@ -47,7 +47,8 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # $HOME/bin/custom_bin symlinked to dotfiles bin/
-export PATH=$HOME/bin/custom_bin:$PATH
+# $HOME/bin for misc. manual installed
+export PATH=$HOME/bin:$HOME/bin/custom_bin:$PATH
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
