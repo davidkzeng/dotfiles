@@ -23,8 +23,6 @@ set wildmenu
 set wildignorecase
 set wildmode=full
 
-" set foldmethod=indent
-
 set colorcolumn=120
 highlight ColorColumn ctermbg=lightgreen guibg=lightgreen
 highlight clear SignColumn
@@ -40,7 +38,6 @@ set undolevels=1000 " Save a maximum of 1000 undos
 set undoreload=10000 " Save undo history when reloading a file
 silent !mkdir $HOME/.vim/backup/undo > /dev/null 2>&1
 
-set noundofile
 " set clipboard=exclude:.*
 
 " Lower updatetime for better responsiveness for certain plugins
@@ -50,6 +47,7 @@ set updatetime=1000
 nnoremap D "_dd
 
 nnoremap <C-z> <C-^>
+" From vim-bbye
 nnoremap <C-x> :Bdelete<CR>
  
 nnoremap <C-Up> <C-u>
@@ -60,7 +58,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
  
 nnoremap <C-n> :noh<CR>
- 
+
+" Move between buffers
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprevious<CR>
  

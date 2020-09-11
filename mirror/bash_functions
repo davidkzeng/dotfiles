@@ -12,9 +12,10 @@ function millis() {
     date +%s%N | cut -b1-13
 }
 
-# FZF aliases
 function fz() {
-    $1 $(fzf)
+    "$1" $(fzf)
 }
-alias lfz='fz less'
-alias vfz='fz nvim'
+
+function pcsv() {
+    column -t -s, -n "$@" | less -S
+}

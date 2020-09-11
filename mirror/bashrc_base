@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Any bashrc settings for a standard environment
 # Compatible with bash and zsh
 
@@ -8,6 +10,13 @@ function is_bash() {
 function is_zsh() {
     [ -n "$ZSH_VERSION" ]
 }
+
+if is_bash; then
+    alias sbrc="source ~/.bashrc"
+fi
+if is_zsh; then
+    alias szrc="source ~/.zshrc"
+fi
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -50,13 +59,13 @@ fi
 # $HOME/bin for misc. manual installed
 export PATH=$HOME/bin:$HOME/bin/custom_bin:$PATH
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# Functions can depend on aliases
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
+fi
+
+# Aliases can depend on functions
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
 fi
 
 # Miscellaneous aliases, functions, etc. not worth preserving or generalizing beyond the current system
