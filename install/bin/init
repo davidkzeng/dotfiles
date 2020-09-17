@@ -5,9 +5,12 @@
 set -eu -o pipefail
 
 install=0
+force_link=0
 while (( "$#" )); do
     case $1 in
         -i | --install) install=1 ;;
+        -f | --force-link) force_link=1 ;;
+        *) echo "unknown argument $1"; exit 1 ;;
     esac
     shift
 done
@@ -17,19 +20,19 @@ sh_dir=$(dirname "$bin_dir")/sh
 dotfiles_dir=$(dirname $(dirname "$bin_dir"))
 
 if [[ $install -eq 1 ]]; then
-    source "$sh_dir"/install.sh
+    "$sh_dir"/install.sh
 fi
 
 # Create symlinks for dotfiles
-source "$sh_dir"/link_files.sh "$dotfiles_dir"
+"$sh_dir"/link_files.sh "$dotfiles_dir" "$force_link"
 
 # Add bashrc_base to zshrc and bashrc
-if [ -e $HOME/.bashrc ] && [[ -z $(grep -Fx "source ~/.bashrc_base" $HOME/.bashrc) ]]; then
-    echo "source ~/.bashrc_base" >> $HOME/.bashrc
+if [ -e $HOME/.bashrc ] && [[ -z $(grep -Fx "source ~/.bash_common" $HOME/.bashrc) ]]; then
+    echo "source ~/.bash_common" >> $HOME/.bashrc
 fi
-if [ -e $HOME/.zshrc ] && [[ -z $(grep -Fx "source ~/.bashrc_base" $HOME/.zshrc) ]]; then
-    echo "source ~/.bashrc_base" >> $HOME/.zshrc
+if [ -e $HOME/.zshrc ] && [[ -z $(grep -Fx "source ~/.bash_common" $HOME/.zshrc) ]]; then
+    echo "source ~/.bash_common" >> $HOME/.zshrc
 fi
 
-source "$sh_dir"/init_tmux.sh
-source "$sh_dir"/init_nvim.sh
+"$sh_dir"/init_tmux.sh
+"$sh_dir"/init_nvim.sh

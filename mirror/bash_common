@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Setup standard shell environment for bash or zsh
+# Compatible with bash and zsh
+
+# Distiguish between bash and zsh
+function is_bash() {
+    [[ -n "$BASH_VERSION" ]]
+}
+function is_zsh() {
+    [[ -n "$ZSH_VERSION" ]]
+}
+
+if is_zsh; then
+    source ~/.zshrc_base
+else
+    source ~/.bashrc_base
+fi
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+# History File Settings
+HISTSIZE=10000
+HISTFILESIZE=10000
+
+if [[ -x /usr/bin/dircolors ]]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# $HOME/bin/custom_bin symlinked to dotfiles bin/
+# $HOME/bin for misc. manual installed
+export PATH=$HOME/bin:$HOME/bin/custom_bin:$PATH
+
+if [[ -f ~/.bash_functions ]]; then
+    source ~/.bash_functions
+fi
+
+# Aliases can depend on functions
+if [[ -f ~/.bash_aliases ]]; then
+    source ~/.bash_aliases
+fi
+
+# Miscellaneous aliases, functions, etc. not worth preserving or generalizing beyond the current system
+if [[ -f ~/.bash_local ]]; then
+    source ~/.bash_local
+fi

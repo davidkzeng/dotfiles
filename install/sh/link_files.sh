@@ -1,6 +1,7 @@
 echo ">>> Started link_files.sh"
 
 dotfiles_dir=$1
+force_link=$2
 home_mirror="${dotfiles_dir}/mirror"
 
 function safe_link() {
@@ -11,7 +12,13 @@ function safe_link() {
         if [[ -L "$link" ]] && [[ "$(readlink $link)" == "$target" ]]; then
             echo "$link already links to target... ignoring"
         else
-            echo "$link already exists... ignoring"
+            if [[ "$force_link" -eq 1 ]]; then
+                echo "WARN: $link already exists... replacing with symlink"
+                rm "$link"
+                ln -s "$target" "$link"
+            else
+                echo "WARN: $link already exists... ignoring"
+            fi
         fi
     elif [[ ! -e "$target" ]]; then
         echo "$target does not exist... ignoring"
@@ -27,7 +34,7 @@ function safe_link() {
 
 safe_link "$dotfiles_dir" "$HOME/.dotfiles"
 
-to_link=(tmux.conf nvimrc gitconfig gitignore_global bash_aliases bash_functions bashrc_base)
+to_link=(tmux.conf nvimrc gitconfig gitignore_global bash_aliases bash_functions bashrc_base zshrc_base bash_common)
 for file in "${to_link[@]}"; do
     safe_link "$home_mirror/$file" "$HOME/.$file"
 done

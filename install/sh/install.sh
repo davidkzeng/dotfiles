@@ -1,4 +1,4 @@
-# Available in default repos for 20.04 and above
+# Ubuntu install for 20.04 or above
 
 echo "Installing packages"
 

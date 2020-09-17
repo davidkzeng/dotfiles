@@ -1,74 +1,8 @@
 #!/bin/bash
 
-# Any bashrc settings for a standard environment
-# Compatible with bash and zsh
+alias sbrc="source ~/.bashrc"
 
-# Distiguish between bash and zsh
-function is_bash() {
-    [ -n "$BASH_VERSION" ]
-}
-function is_zsh() {
-    [ -n "$ZSH_VERSION" ]
-}
+shopt -s histappend
 
-if is_bash; then
-    alias sbrc="source ~/.bashrc"
-fi
-if is_zsh; then
-    alias szrc="source ~/.zshrc"
-fi
-
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-
-if is_zsh; then
-    # Initialize color expansion
-    # Use with $fg[green] or %{$fg[green]%}
-    autoload -U colors && colors
-fi
-
-# History File Settings
-HISTSIZE=10000
-HISTFILESIZE=10000
-if is_zsh; then
-    HISTFILE=~/.zsh_history
-    setopt appendhistory
-    setopt incappendhistory # Immediate append instead of on terminal exit
-elif is_bash; then
-    shopt -s histappend
-fi
-
-# Terminal Prompt (with colors)
-if is_zsh; then
-    PROMPT="%{$fg[green]%}%n@%m:%{$fg[blue]%}%~%{$reset_color%}$ "
-    # PROMPT="%n@%m:%~$ "
-elif is_bash; then
-    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    # PS1='\u@\h:\w$ '
-fi
-
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# $HOME/bin/custom_bin symlinked to dotfiles bin/
-# $HOME/bin for misc. manual installed
-export PATH=$HOME/bin:$HOME/bin/custom_bin:$PATH
-
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
-
-# Aliases can depend on functions
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# Miscellaneous aliases, functions, etc. not worth preserving or generalizing beyond the current system
-if [ -f ~/.bash_local ]; then
-    . ~/.bash_local
-fi
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# PS1='\u@\h:\w$ '
