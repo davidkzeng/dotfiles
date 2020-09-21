@@ -4,7 +4,7 @@ alias szrc="source ~/.zshrc"
 
 # Initialize color expansion
 # Use with $fg[green] or %{$fg[green]%}
-autoload -U colors && colors
+autoload -Uz colors && colors
 
 HISTFILE=~/.zsh_history
 setopt appendhistory
