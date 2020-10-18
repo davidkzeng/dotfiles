@@ -1,11 +1,11 @@
 set number relativenumber
 set cursorline
- 
+
 set backspace=indent,eol,start
 set visualbell
- 
+
 set mouse=a
- 
+
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -29,7 +29,7 @@ highlight clear SignColumn
 
 " Permanant gutter column
 set signcolumn=yes
- 
+
 " Persistent undo settings
 set undofile " Save undo history
 set undodir=$HOME/.vim/backup/undo// " Store undo history in a central directory
@@ -49,20 +49,20 @@ nnoremap D "_dd
 nnoremap <C-z> <C-^>
 " From vim-bbye
 nnoremap <C-x> :Bdelete<CR>
- 
+
 nnoremap <C-Up> <C-u>
 nnoremap <C-Down> <C-d>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
- 
+
 nnoremap <C-n> :noh<CR>
 
 " Move between buffers
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprevious<CR>
- 
+
 " Quickfix mappings
 nnoremap ]q :cn<CR>
 nnoremap [q :cp<CR>
@@ -111,6 +111,7 @@ augroup FileIndent
     autocmd!
     autocmd Filetype markdown setlocal tabstop=2 shiftwidth=2 softtabstop=2
 augroup END
+
 " Use DetectIndent for remaining files
 function! IgnorableDetectIndent()
     if &filetype == 'markdown'

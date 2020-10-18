@@ -19,3 +19,9 @@ function fz() {
 function pcsv() {
     column -t -s, -n "$@" | less -S
 }
+
+function grepcode() {
+    search=$1
+    target=${2:-.}
+    grep -r --include \*.py --include \*.c --include \*.rs --include \*.sh $1 $2
+}

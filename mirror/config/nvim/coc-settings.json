@@ -6,5 +6,6 @@
             "filetypes": ["rust"],
             "rootPatterns": ["Cargo.toml"]
         }
-    }
+    },
+    "python.linting.enabled": false
 }

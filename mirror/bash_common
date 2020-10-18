@@ -36,6 +36,10 @@ fi
 # $HOME/bin for misc. manual installed
 export PATH=$HOME/bin:$HOME/bin/custom_bin:$PATH
 
+if [ -e /home/david/.nix-profile/etc/profile.d/nix.sh ]; then
+    . /home/david/.nix-profile/etc/profile.d/nix.sh;
+fi
+
 if [[ -f ~/.bash_functions ]]; then
     source ~/.bash_functions
 fi
