@@ -1,0 +1,3 @@
+source "$HOME/.profile"
+
+if [[ -n "$PS1" ]]; then source "$HOME/.bashrc"; fi

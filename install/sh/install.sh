@@ -2,6 +2,8 @@
 
 echo "Installing packages"
 
-default_install=(neovim tmux git htop zsh fzf)
+default_install=(neovim git htop zsh fzf nix)
 
 sudo apt install ${default_install[@]}
+
+nix-env --install tmux

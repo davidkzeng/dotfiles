@@ -34,21 +34,24 @@ function safe_link() {
 
 safe_link "$dotfiles_dir" "$HOME/.dotfiles"
 
-to_link=(tmux.conf nvimrc vimrc gitconfig gitignore_global bash_aliases bash_functions bashrc_base zshrc_base bash_common)
+to_link=(
+    vimrc
+    profile
+    bash_profile
+    bashrc
+    zshrc
+    config/bash
+    config/nvim
+    config/tmux
+    config/git
+    config/Code/User/settings.json
+    config/Code/User/keybindings.json
+)
 for file in "${to_link[@]}"; do
     safe_link "$home_mirror/$file" "$HOME/.$file"
 done
 
-to_link_config=(
-    config/nvim
-    config/Code/User/settings.json
-    config/Code/User/keybindings.json
-)
-for file in "${to_link_config[@]}"; do
-    safe_link "$home_mirror/$file" "$HOME/.$file"
-done
-
 mkdir -p "$HOME/bin"
-safe_link "$home_mirror/bin/custom_bin" "$HOME/bin/custom_bin"
+safe_link "$home_mirror/bin/personal_bin" "$HOME/bin/personal_bin"
 
 echo "<<< Completed link_files.sh"

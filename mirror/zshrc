@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+if [[ -z "$PS1" ]]; then return; fi
+
+source "$HOME/.config/bash/bash_common"
+
 alias szrc="source ~/.zshrc"
 
 # Initialize color expansion
