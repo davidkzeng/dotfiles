@@ -1,11 +1,14 @@
+" Compatible with nvim 0.4+, vim 8+
 set number relativenumber
 set cursorline
 
 set backspace=indent,eol,start
 set visualbell
 
+" Enable mouse support in all modes
 set mouse=a
 
+" Tabs and spacing
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -14,11 +17,13 @@ set expandtab
 set smarttab
 set autoindent
 
+" Search
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 
+" Completion
 set wildmenu
 set wildignorecase
 set wildmode=full
@@ -30,15 +35,26 @@ highlight clear SignColumn
 " Permanant gutter column
 set signcolumn=yes
 
+if empty($XDG_DATA_HOME)
+    let datahome = $HOME . '/.local/share/vim'
+else
+    let datahome = $XDG_DATA_HOME . '/vim'
+endif
+
 " Persistent undo settings
 set undofile " Save undo history
-set undodir=$HOME/.vim/backup/undo// " Store undo history in a central directory
-set undodir+=. " Alternatively, store undo history in the same directory as the file
 set undolevels=1000 " Save a maximum of 1000 undos
 set undoreload=10000 " Save undo history when reloading a file
-silent !mkdir $HOME/.vim/backup/undo > /dev/null 2>&1
+let &undodir=datahome . '/undo/'
+if !isdirectory(&undodir)
+    call mkdir(&undodir, "p", 0700)
+endif
 
-" set clipboard=exclude:.*
+" Prevent attempt to link with terminal clipboard
+" Can lower startup time when used through ssh
+if exists(&clipboard)
+    set clipboard=exclude:.*
+endif
 
 " Lower updatetime for better responsiveness for certain plugins
 set updatetime=1000
@@ -46,36 +62,30 @@ set updatetime=1000
 " Remappings
 nnoremap D "_dd
 
-nnoremap <C-z> <C-^>
-" From vim-bbye
+" vim-bbye remappings
 nnoremap <C-x> :Bdelete<CR>
 
-nnoremap <C-Up> <C-u>
-nnoremap <C-Down> <C-d>
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
+" Clear search highlights
 nnoremap <C-n> :noh<CR>
 
-" Move between buffers
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprevious<CR>
 
-" Quickfix mappings
-nnoremap ]q :cn<CR>
-nnoremap [q :cp<CR>
-nnoremap <Leader>q :ccl<CR>
+nnoremap <C-Up>   <C-u>
+nnoremap <C-Down> <C-d>
 
 nnoremap <Leader>l :set invlist<cr>
 vnoremap p pgvy
 
-" Removes trailing whitespace
 function! TrimWhitespace()
-  %s/\s*$//
+    %s/\s*$//
 endfunction
 command! TrimWhiteSpace call TrimWhitespace()
+
+function! OpenVimConfig()
+    :e $MYVIMRC
+endfunction
+command! OpenVimConfig call OpenVimConfig()
 
 call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
@@ -88,8 +98,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-signify'
 
     Plug 'roryokane/detectindent'
-
-    Plug 'rust-lang/rust.vim'
 
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -104,20 +112,21 @@ call plug#begin('~/.vim/plugged')
 
     " Depends on npm module instant-markdown-d: https://github.com/suan/vim-instant-markdown
     Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+
+    Plug 'rust-lang/rust.vim'
 call plug#end()
 
-" Override default file indent of 4
+" Override default indentation
 augroup FileIndent
     autocmd!
     autocmd Filetype markdown setlocal tabstop=2 shiftwidth=2 softtabstop=2
 augroup END
 
-" Use DetectIndent for remaining files
+" markdown requires two space tabs
 function! IgnorableDetectIndent()
-    if &filetype == 'markdown'
+    if index(['markdown'], &filetype) != -1
         return
     endif
-    " Return early for files you wish to ignore
     DetectIndent
 endfunction
 augroup DetectIndent
@@ -130,6 +139,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#whitespace#checks = []
 
+let g:airline_theme = 'molokai'
+
 " vim-signify settings
 let g:signify_vcs_list = [ 'hg', 'git' ]
 
@@ -137,6 +148,7 @@ let g:signify_vcs_list = [ 'hg', 'git' ]
 let g:session_autosave = 0
 let g:session_autoload = 0
 
+" indentline settings
 let g:indentLine_conceallevel = 0
 
 " CoC settings
@@ -174,10 +186,8 @@ endfunction
 
 " vim-instant-markdown settings
 let g:instant_markdown_mathjax = 1
-" Only update on save/idle
-let g:instant_markdown_slow = 1
-" :InstantMarkdownPreview to manually trigger
-let g:instant_markdown_autostart = 0
+let g:instant_markdown_slow = 1 " Only update on save/idle
+let g:instant_markdown_autostart = 0 " :InstantMarkdownPreview to manually trigger
 
 " molokai settings
 let g:molokai_original = 1
