@@ -9,9 +9,7 @@ set visualbell
 set mouse=a
 
 " Tabs and spacing
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=4 shiftwidth=4 softtabstop=4
 set shiftround
 set expandtab
 set smarttab
@@ -116,15 +114,20 @@ call plug#begin('~/.vim/plugged')
     Plug 'rust-lang/rust.vim'
 call plug#end()
 
+function! SetFileIndent(length)
+    setlocal tabstop=a:length shiftwidth=a:length softtabstop=a:length
+endfunction
+
 " Override default indentation
 augroup FileIndent
     autocmd!
-    autocmd Filetype markdown setlocal tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd Filetype markdown,html setlocal tabstop=2 shiftwidth=2 softtabstop=2
 augroup END
 
 " markdown requires two space tabs
+" rust, python have standardized style with four space tabs
 function! IgnorableDetectIndent()
-    if index(['markdown'], &filetype) != -1
+    if index(['markdown', 'rust', 'python', 'html'], &filetype) != -1
         return
     endif
     DetectIndent

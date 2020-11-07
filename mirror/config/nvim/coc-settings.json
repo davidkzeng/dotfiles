@@ -7,13 +7,13 @@
             "rootPatterns": ["Cargo.toml"]
         },
         "python": {
-            "command": "python3",
+            "command": "pyls",
             "args": [
-                "-mpyls",
                 "-vv",
                 "--log-file",
                 "/tmp/lsp_python.log"
             ],
+            "rootPatterns": [".flake8"],
             "trace.server": "verbose",
             "filetypes": [
                 "python"
@@ -21,12 +21,13 @@
             "settings": {
                 "pyls": {
                     "enable": true,
+                    "configurationSources": ["flake8"],
                     "plugins": {
                         "pyflakes": {
                             "enabled": true
                         },
                         "pycodestyle": {
-                            "enabled": false
+                            "enabled": true
                         }
                     }
                 }
