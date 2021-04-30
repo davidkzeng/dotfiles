@@ -33,6 +33,7 @@ highlight clear SignColumn
 " Permanant gutter column
 set signcolumn=yes
 
+" Respect XDG_DATA_HOME environment variable
 if empty($XDG_DATA_HOME)
     let datahome = $HOME . '/.local/share/vim'
 else
@@ -58,6 +59,7 @@ endif
 set updatetime=1000
 
 " Remappings
+" delete without saving to buffer
 nnoremap D "_dd
 
 " vim-bbye remappings
@@ -73,6 +75,7 @@ nnoremap <C-Up>   <C-u>
 nnoremap <C-Down> <C-d>
 
 nnoremap <Leader>l :set invlist<cr>
+" reselects and copies pasted text
 vnoremap p pgvy
 
 function! TrimWhitespace()
@@ -114,17 +117,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'rust-lang/rust.vim'
 call plug#end()
 
-function! SetFileIndent(length)
-    setlocal tabstop=a:length shiftwidth=a:length softtabstop=a:length
-endfunction
-
 " Override default indentation
 augroup FileIndent
     autocmd!
-    autocmd Filetype markdown,html setlocal tabstop=2 shiftwidth=2 softtabstop=2
+    " html personal preference
+    autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2
 augroup END
 
-" markdown requires two space tabs
+" commonmark suggest 4 space indentation
 " rust, python have standardized style with four space tabs
 function! IgnorableDetectIndent()
     if index(['markdown', 'rust', 'python', 'html'], &filetype) != -1
@@ -152,7 +152,10 @@ let g:session_autosave = 0
 let g:session_autoload = 0
 
 " indentline settings
-let g:indentLine_conceallevel = 0
+let g:indentLine_conceallevel = 1
+" either the conceallevel or indentation lines themselves are annoying with
+" these filetypes
+let g:indentLine_fileTypeExclude = ['markdown', 'json']
 
 " CoC settings
 

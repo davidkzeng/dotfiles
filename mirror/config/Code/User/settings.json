@@ -26,6 +26,10 @@
         "*.out"
     ],
 
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.ignorecase": true,
+    "vim.smartcase": true,
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["[", "t"],
@@ -38,6 +42,10 @@
             "commands": [
                 ":tabnext"
             ]
-        }
+        },
+        {
+            "before": ["D"],
+            "after": ["\"", "_", "d", "d"],
+        },
     ]
 }

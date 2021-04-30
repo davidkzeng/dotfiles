@@ -26,15 +26,5 @@ fi
 # Create symlinks for dotfiles
 "$sh_dir"/link_files.sh "$dotfiles_dir" "$force_link"
 
-# Add bashrc_base to zshrc and bashrc
-if [ -e $HOME/.bashrc ] && [[ -z $(grep -Fx "source ~/.bash_common" $HOME/.bashrc) ]]; then
-    echo "source ~/.bash_common" >> $HOME/.bashrc
-    source $HOME/.bashrc
-fi
-if [ -e $HOME/.zshrc ] && [[ -z $(grep -Fx "source ~/.bash_common" $HOME/.zshrc) ]]; then
-    echo "source ~/.bash_common" >> $HOME/.zshrc
-    source $HOME/.zshrc
-fi
-
 "$sh_dir"/init_tmux.sh
 "$sh_dir"/init_nvim.sh
