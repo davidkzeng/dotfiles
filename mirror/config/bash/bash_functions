@@ -13,10 +13,6 @@ function millis() {
     date +%s%N | cut -b1-13
 }
 
-function fz() {
-    "$1" $(fzf)
-}
-
 function pcsv() {
     column -t -s, -n "$@" | less -S
 }
@@ -26,3 +22,38 @@ function grepcode() {
     target=${2:-.}
     grep -r --include \*.py --include \*.c --include \*.rs --include \*.sh $search $target
 }
+
+if has_cmd fzf; then
+    if has_cmd rg; then
+        function fz() {
+            target=$1
+            if [[ "$2" == "--ignore" ]]; then
+                # rg --files respects .gitignore files
+                $target $(FZF_DEFAULT_COMMAND="rg --files" fzf)
+            else
+                $target $(fzf)
+            fi
+        }
+    else
+        function fz() {
+            target=$1
+            $target $(fzf)
+        }
+    fi
+
+    function lfz() {
+        fz less
+    }
+
+    function vfz() {
+        fz vim
+    }
+
+    function lfzi() {
+        fz less --ignore
+    }
+
+    function vfzi() {
+        fz vim --ignore
+    }
+fi

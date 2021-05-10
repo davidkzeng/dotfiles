@@ -3,8 +3,19 @@
     "search.useIgnoreFiles": false,
     "window.zoomLevel": 0,
     "editor.lineNumbers": "relative",
+    "editor.fontSize": 12,
+    "editor.wordWrap": "on",
+    "editor.minimap.enabled": false,
 
-    "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    "workbench.colorTheme": "Monokai Classic",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+
+    "terminal.integrated.defaultProfile.linux": "/usr/bin/zsh",
 
     "latex-workshop.view.pdf.viewer": "browser",
     "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
@@ -26,10 +37,17 @@
         "*.out"
     ],
 
+    "rust-analyzer.updates.askBeforeDownload": false,
+
     "vim.hlsearch": true,
     "vim.incsearch": true,
     "vim.ignorecase": true,
     "vim.smartcase": true,
+    "vim.handleKeys": {
+        "<C-b>": false,  // open/close leftbar
+        "<C-f>": false,  // find
+        "<C-k>": false,  // +z: zen
+    },
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["[", "t"],
@@ -47,5 +65,47 @@
             "before": ["D"],
             "after": ["\"", "_", "d", "d"],
         },
-    ]
+        {
+            "before": ["\\", "n"],
+            "commands": [":noh"],
+        },
+        {
+            "before": ["\\", "l"],
+            "commands": ["editor.action.toggleRenderWhitespace"]
+        },
+
+        {
+            "before": ["g", "d"],
+            "commands": ["editor.action.revealDefinition"],
+        },
+        {
+            "before": ["g", "r"],
+            "commands": ["editor.action.goToReferences"],
+        },
+        {
+            "before": ["g", "y"],
+            "commands": ["editor.action.goToTypeDefinition"],
+        },
+        {
+            "before": ["g", "i"],
+            "commands": ["editor.action.goToImplementation"],
+        },
+        {
+            "before": ["g", "h"],
+            "commands": ["editor.action.showHover"]
+        },
+
+        {
+            "before": ["<C-x>"],
+            "commands": ["workbench.action.closeActiveEditor"],
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["p"],
+            "after": ["p", "g", "v", "y"]
+        }
+    ],
+    "editor.renderWhitespace": "none",
+    "workbench.iconTheme": "Monokai Classic Icons",
 }

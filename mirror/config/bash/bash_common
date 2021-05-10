@@ -25,6 +25,10 @@ export XDG_DATA_HOME="$HOME/.local/share"
 
 BASH_CONFIG_HOME="$XDG_CONFIG_HOME/bash"
 
+function has_cmd() {
+    [[ -x "$(command -v $1)" ]]
+}
+
 if [[ -f "$BASH_CONFIG_HOME/bash_functions" ]]; then
     source "$BASH_CONFIG_HOME/bash_functions"
 fi

@@ -88,6 +88,8 @@ function! OpenVimConfig()
 endfunction
 command! OpenVimConfig call OpenVimConfig()
 
+command! SourceVimConfig :source $MYVIMRC
+
 call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -109,7 +111,9 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'moll/vim-bbye'
 
+    " Navigation
     Plug 'junegunn/fzf'
+    Plug 'preservim/nerdtree'
 
     " Depends on npm module instant-markdown-d: https://github.com/suan/vim-instant-markdown
     Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -194,6 +198,16 @@ endfunction
 let g:instant_markdown_mathjax = 1
 let g:instant_markdown_slow = 1 " Only update on save/idle
 let g:instant_markdown_autostart = 0 " :InstantMarkdownPreview to manually trigger
+
+" NerdTree settings
+nnoremap <leader>t :NERDTreeToggle<CR>
+let g:NERDTreeMinimalUI = 1 " Disable help text
+
+" fzf settings
+if executable('rg')
+    command! FZ call fzf#run({'source': 'rg --files', 'sink' : 'e'})
+    command! FZA call fzf#run({'sink': 'e'})
+endif
 
 " molokai settings
 let g:molokai_original = 1

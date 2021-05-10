@@ -11,6 +11,3 @@ alias venv='virtualenv'
 alias venva='source venv/bin/activate'
 
 alias wget-agent='wget --user-agent="Mozilla/5.0"' # Get around 403 forbidden with wget
-
-alias lfz='fz less'
-alias vfz='fz nvim'
