@@ -13,6 +13,19 @@ function millis() {
     date +%s%N | cut -b1-13
 }
 
+function date_epoch() {
+    # Good until Mar. 2255
+    limit=9000000000
+    ts=$1
+    if (( $ts < $limit )); then
+        date -d @${ts}
+    elif (( $ts < $limit * 1000 )); then
+        date -d @$(($ts / 1000))
+    else
+        date -d @$(($ts / 1000000))
+    fi
+}
+
 function pcsv() {
     column -t -s, -n "$@" | less -S
 }

@@ -6,4 +6,4 @@ default_install=(neovim git htop zsh fzf nix)
 
 sudo apt install ${default_install[@]}
 
-nix-env --install tmux
+nix-env --install tmux ripgrep

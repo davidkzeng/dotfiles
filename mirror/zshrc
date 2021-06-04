@@ -31,4 +31,10 @@ autoload -Uz compinit && compinit
 eval $(dircolors)
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-bindkey '^_' undo # Undo last tab completion
+bindkey '^_' undo # ctrl + _ : undo last tab completion
+bindkey -v # vi mode
+bindkey '^r' history-incremental-search-backward
+
+if has_cmd direnv; then
+  eval "$(direnv hook zsh)"
+fi

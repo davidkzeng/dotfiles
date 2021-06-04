@@ -52,6 +52,6 @@ for file in "${to_link[@]}"; do
 done
 
 mkdir -p "$HOME/bin"
-safe_link "$home_mirror/bin/personal_bin" "$HOME/bin/personal_bin"
+safe_link "$home_mirror/bin/custom" "$HOME/bin/custom"
 
 echo "<<< Completed link_files.sh"

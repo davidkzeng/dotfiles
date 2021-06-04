@@ -27,3 +27,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+if has_cmd direnv; then
+  eval "$(direnv hook bash)"
+fi

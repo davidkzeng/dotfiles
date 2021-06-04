@@ -28,3 +28,6 @@ fi
 
 "$sh_dir"/init_tmux.sh
 "$sh_dir"/init_nvim.sh
+
+# TODO (configure through nix?)
+# smdv (vim-instant-markdown), pyls (coc.nvim)

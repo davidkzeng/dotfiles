@@ -1,0 +1,9 @@
+appdirs==1.4.4
+argcomplete==1.12.3
+distlib==0.3.2
+filelock==3.0.12
+packaging==20.9
+pipx==0.16.3
+pyparsing==2.4.7
+userpath==1.6.0
+virtualenv==20.4.7

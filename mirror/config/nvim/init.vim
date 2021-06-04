@@ -3,7 +3,10 @@ set number relativenumber
 set cursorline
 
 set backspace=indent,eol,start
+
+" disable bell
 set visualbell
+set t_vb=
 
 " Enable mouse support in all modes
 set mouse=a
@@ -78,6 +81,11 @@ nnoremap <Leader>l :set invlist<cr>
 " reselects and copies pasted text
 vnoremap p pgvy
 
+" Quickfix
+nnoremap ]q :cn<CR>
+nnoremap [q :cp<CR>
+nnoremap <Leader>q :ccl<CR>
+
 function! TrimWhitespace()
     %s/\s*$//
 endfunction
@@ -115,11 +123,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf'
     Plug 'preservim/nerdtree'
 
-    " Depends on npm module instant-markdown-d: https://github.com/suan/vim-instant-markdown
-    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+    Plug 'davidkzeng/vim-instant-markdown', {'branch': 'smdv_updates', 'for': 'markdown'}
 
     Plug 'rust-lang/rust.vim'
+    Plug 'jremmen/vim-ripgrep'
 call plug#end()
+
+" detect-indent settings
 
 " Override default indentation
 augroup FileIndent
@@ -198,6 +208,7 @@ endfunction
 let g:instant_markdown_mathjax = 1
 let g:instant_markdown_slow = 1 " Only update on save/idle
 let g:instant_markdown_autostart = 0 " :InstantMarkdownPreview to manually trigger
+let g:instant_markdown_python = 1
 
 " NerdTree settings
 nnoremap <leader>t :NERDTreeToggle<CR>
@@ -205,8 +216,8 @@ let g:NERDTreeMinimalUI = 1 " Disable help text
 
 " fzf settings
 if executable('rg')
-    command! FZ call fzf#run({'source': 'rg --files', 'sink' : 'e'})
-    command! FZA call fzf#run({'sink': 'e'})
+    command! FZ call fzf#run(fzf#wrap({'source': 'rg --files'}))
+    command! FZA call fzf#run(fzf#wrap({}))
 endif
 
 " molokai settings
