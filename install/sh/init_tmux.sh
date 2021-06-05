@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo ">>> Started init_tmux.sh"
 
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then

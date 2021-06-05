@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo ">>> Started init_nvim.sh"
 plug_file="$XDG_DATA_HOME"/nvim/site/autoload/plug.vim
 if [ ! -e "$plug_file" ]; then

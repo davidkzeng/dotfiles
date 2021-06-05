@@ -1,3 +1,4 @@
 source "$HOME/.profile"
 
 if [[ -n "$PS1" ]]; then source "$HOME/.bashrc"; fi
+if [ -e /home/david/.nix-profile/etc/profile.d/nix.sh ]; then . /home/david/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

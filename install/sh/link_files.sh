@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo ">>> Started link_files.sh"
 
 dotfiles_dir=$1
@@ -9,7 +11,7 @@ function safe_link() {
     link=$2
 
     if [[ -e "$link" ]]; then
-        if [[ -L "$link" ]] && [[ "$(readlink $link)" == "$target" ]]; then
+        if [[ -L "$link" ]] && [[ "$(readlink "$link")" == "$target" ]]; then
             echo "$link already links to target... ignoring"
         else
             if [[ "$force_link" -eq 1 ]]; then
@@ -25,7 +27,7 @@ function safe_link() {
     else
         if [[ -L "$link" ]]; then
             echo "Removing broken symlink $link"
-            rm $link
+            rm "$link"
         fi
         echo "Added symlink $link -> $target"
         ln -s "$target" "$link"
@@ -44,6 +46,7 @@ to_link=(
     config/nvim
     config/tmux
     config/git
+    config/nixpkgs
     config/Code/User/settings.json
     config/Code/User/keybindings.json
 )

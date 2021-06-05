@@ -1,9 +1,17 @@
+#!/bin/bash
+
 # Ubuntu install for 20.04 or above
+set -e
 
 echo "Installing packages"
 
-default_install=(neovim git htop zsh fzf nix)
+function has_cmd() {
+    [[ -x "$(command -v "$1")" ]]
+}
 
-sudo apt install ${default_install[@]}
+if ! has_cmd nix; then
+    curl -L https://nixos.org/nix/install | sh
+    . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
+fi
 
-nix-env --install tmux ripgrep
+nix-env --install -A nixpkgs.myPackages

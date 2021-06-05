@@ -4,7 +4,17 @@
 # Compatible with bash and zsh
 # Should be moved directly to bashrc/zshrc once all functionality is confirmed
 
-export VISUAL=nvim
+function has_cmd() {
+    [[ -x "$(command -v $1)" ]]
+}
+
+if has_cmd nvim; then
+    export VIM_BIN=nvim
+else
+    export VIM_BIN=vim
+fi
+
+export VISUAL="$VIM_BIN"
 export EDITOR="$VISUAL"
 
 # History File Settings
@@ -24,10 +34,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 BASH_CONFIG_HOME="$XDG_CONFIG_HOME/bash"
-
-function has_cmd() {
-    [[ -x "$(command -v $1)" ]]
-}
 
 if [[ -f "$BASH_CONFIG_HOME/bash_functions" ]]; then
     source "$BASH_CONFIG_HOME/bash_functions"

@@ -38,3 +38,4 @@ bindkey '^r' history-incremental-search-backward
 if has_cmd direnv; then
   eval "$(direnv hook zsh)"
 fi
+if [ -e /home/david/.nix-profile/etc/profile.d/nix.sh ]; then . /home/david/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
