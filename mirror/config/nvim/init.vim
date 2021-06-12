@@ -208,7 +208,8 @@ endfunction
 let g:instant_markdown_mathjax = 1
 let g:instant_markdown_slow = 1 " Only update on save/idle
 let g:instant_markdown_autostart = 0 " :InstantMarkdownPreview to manually trigger
-let g:instant_markdown_python = 1
+let g:instant_markdown_python = 1 " 1 = smdv, 0 = instant-markdown-d
+let g:instant_markdown_flavor = 'commonmark_x'
 
 " NerdTree settings
 nnoremap <leader>t :NERDTreeToggle<CR>

@@ -29,10 +29,8 @@ dotfiles_dir="$(dirname "$(dirname "$bin_dir")")"
 
 if [[ $install -eq 1 ]]; then
     "$sh_dir"/install.sh
+    "$sh_dir"/init_python.sh
+    "$sh_dir"/init_node.sh
+    "$sh_dir"/init_tmux.sh
+    "$sh_dir"/init_nvim.sh
 fi
-
-"$sh_dir"/init_tmux.sh
-"$sh_dir"/init_nvim.sh
-
-# TODO (configure through nix?)
-# smdv (vim-instant-markdown), pyls (coc.nvim)

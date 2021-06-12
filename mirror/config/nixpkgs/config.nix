@@ -11,9 +11,11 @@
                 neovim
                 nix-tree
                 nixfmt
+                nodejs
                 pandoc
                 ripgrep
                 shellcheck
+                sqlite
                 tmux
                 zola
                 zsh

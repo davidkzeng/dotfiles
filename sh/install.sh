@@ -5,9 +5,12 @@ set -e
 
 echo "Installing packages"
 
-function has_cmd() {
-    [[ -x "$(command -v "$1")" ]]
-}
+sh_dir="$(dirname "$(realpath "$0")")"
+. "${sh_dir}/utils.sh"
+
+if ! has_cmd pip3; then
+    sudo apt install pip3
+fi
 
 if ! has_cmd nix; then
     curl -L https://nixos.org/nix/install | sh

@@ -2,10 +2,10 @@
 
 alias vim="$VIM_BIN"
 
-alias python='python3'
-alias python2='\python'
-alias pip='pip3'
-alias pip2='\pip'
+if [[ "$(python --version)" =~ "Python 2.*" ]]; then
+    alias python='python3'
+    alias pip='pip3'
+fi
 
 alias venv='virtualenv'
 alias venva='source venv/bin/activate'

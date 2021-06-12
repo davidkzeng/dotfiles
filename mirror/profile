@@ -16,6 +16,12 @@ if [[ -d "$HOME/.cargo/bin" ]]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+NPM_CONFIG_PREFIX="$HOME/.npm-packages"
+if [[ -d "$NPM_CONFIG_PREFIX/bin" ]]; then
+    PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
+fi
+
+export NPM_CONFIG_PREFIX=$NPM_CONFIG_PREFIX
 export PATH=$PATH
 
 if [ -e /home/david/.nix-profile/etc/profile.d/nix.sh ]; then . /home/david/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

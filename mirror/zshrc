@@ -35,7 +35,11 @@ bindkey '^_' undo # ctrl + _ : undo last tab completion
 bindkey -v # vi mode
 bindkey '^r' history-incremental-search-backward
 
+bindkey  "^[[H"   beginning-of-line # home
+bindkey  "^[[F"   end-of-line       # end
+
 if has_cmd direnv; then
   eval "$(direnv hook zsh)"
 fi
+
 if [ -e /home/david/.nix-profile/etc/profile.d/nix.sh ]; then . /home/david/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
