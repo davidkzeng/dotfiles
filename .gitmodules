@@ -1,0 +1,3 @@
+[submodule "custom/research-tools"]
+	path = custom/research-tools
+	url = https://github.com/davidkzeng/research-tools.git
