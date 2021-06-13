@@ -3,22 +3,33 @@
         myPackages = pkgs.buildEnv {
             name = "my-packages";
             paths = [
-                direnv
-                fzf
-                git
-                htop
-                linuxPackages.perf
-                neovim
+                # nix related
                 nix-tree
                 nixfmt
-                nodejs
-                pandoc
+
+                # core dev environment
+                git
+                neovim
+                tmux
+                zsh
+
+                # misc. dev environment
+                direnv
+                fzf
                 ripgrep
                 shellcheck
+
+                # dev languages, tools
+                nodejs
                 sqlite
-                tmux
+
+                linuxPackages.perf
+
+                # personal apps
+                pandoc
                 zola
-                zsh
+                htop
+                neofetch
             ];
         };
         pathsToLink = [ "/share/man" "/share/doc" "/bin" ];

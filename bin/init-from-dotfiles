@@ -21,16 +21,20 @@ while (( "$#" )); do
 done
 
 bin_dir="$(dirname "$(realpath "$0")")"
-sh_dir=$(dirname "$bin_dir")/sh
-dotfiles_dir="$(dirname "$(dirname "$bin_dir")")"
+dotfiles_dir="$(dirname "$bin_dir")"
+sh_dir="$dotfiles_dir/sh"
 
 # Create symlinks for dotfiles
 "$sh_dir"/link_files.sh "$dotfiles_dir" "$force_link"
 
 if [[ $install -eq 1 ]]; then
+    export NIX_INSTALLER_NO_MODIFY_PROFILE=1
     "$sh_dir"/install.sh
+    . ~/.profile
+    . ~/.config/bash/bash_common
     "$sh_dir"/init_python.sh
     "$sh_dir"/init_node.sh
     "$sh_dir"/init_tmux.sh
     "$sh_dir"/init_nvim.sh
+    "$sh_dir"/init_custom.sh
 fi

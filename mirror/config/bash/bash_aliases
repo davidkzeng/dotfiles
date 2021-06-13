@@ -2,9 +2,11 @@
 
 alias vim="$VIM_BIN"
 
-if [[ "$(python --version)" =~ "Python 2.*" ]]; then
-    alias python='python3'
-    alias pip='pip3'
+if has_cmd python3; then
+    if ! has_cmd python || [[ "$(python --version)" =~ "Python 2.*" ]]; then
+        alias python='python3'
+        alias pip='pip3'
+    fi
 fi
 
 alias venv='virtualenv'

@@ -11,6 +11,18 @@ echo ">>> Started init_python.sh"
 sh_dir="$(dirname "$(realpath "$0")")"
 . "${sh_dir}/utils.sh"
 
+if ! has_cmd python3; then
+    sudo apt install python3
+fi
+
+if ! has_cmd pip3; then
+    sudo apt install python3-pip
+fi
+
+if ! has_cmd virtualenv; then
+    python3 -m pip install --user virtualenv
+fi
+
 if ! has_cmd pipx; then
     python3 -m pip install --user pipx
 fi
@@ -20,12 +32,11 @@ if ! has_cmd poetry; then
 fi
 
 if ! has_cmd pyls; then
-    pipx install pyls
+    pipx install python-language-server
 fi
 
-# if ! has_cmd smdv; then
-#     pipx install smdv
-# fi
-# currently using some hacks to manual build own version of smdv
+if ! has_cmd smdv; then
+    pipx install git+https://github.com/davidkzeng/smdv.git
+fi
 
 echo "<<< Completed init_python.sh"

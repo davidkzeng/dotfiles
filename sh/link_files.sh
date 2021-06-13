@@ -6,6 +6,7 @@ dotfiles_dir=$1
 force_link=$2
 home_mirror="${dotfiles_dir}/mirror"
 
+
 function safe_link() {
     target=$1
     link=$2
@@ -29,7 +30,8 @@ function safe_link() {
             echo "Removing broken symlink $link"
             rm "$link"
         fi
-        echo "Added symlink $link -> $target"
+        echo "Adding symlink $link -> $target"
+        mkdir -p "$(dirname "$link")"
         ln -s "$target" "$link"
     fi
 }

@@ -24,4 +24,4 @@ fi
 export NPM_CONFIG_PREFIX=$NPM_CONFIG_PREFIX
 export PATH=$PATH
 
-if [ -e /home/david/.nix-profile/etc/profile.d/nix.sh ]; then . /home/david/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi

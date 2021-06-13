@@ -8,11 +8,8 @@ echo "Installing packages"
 sh_dir="$(dirname "$(realpath "$0")")"
 . "${sh_dir}/utils.sh"
 
-if ! has_cmd pip3; then
-    sudo apt install pip3
-fi
-
 if ! has_cmd nix; then
+    # For some reason the install modifies zshrc/bash_profile, please delete
     curl -L https://nixos.org/nix/install | sh
     . /home/${USER}/.nix-profile/etc/profile.d/nix.sh
 fi
