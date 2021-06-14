@@ -24,7 +24,6 @@
                 nodejs
                 sqlite
                 gnumake
-                gcc
                 google-cloud-sdk
                 linuxPackages.perf
 
