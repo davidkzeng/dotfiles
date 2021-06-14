@@ -8,7 +8,6 @@
                 nixfmt
 
                 # core dev environment
-                git
                 neovim
                 tmux
                 zsh
@@ -18,11 +17,15 @@
                 fzf
                 ripgrep
                 shellcheck
+                cloc
 
                 # dev languages, tools
+                git
                 nodejs
                 sqlite
-
+                gnumake
+                gcc
+                google-cloud-sdk
                 linuxPackages.perf
 
                 # personal apps
