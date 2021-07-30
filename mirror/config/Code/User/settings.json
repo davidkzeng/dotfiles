@@ -6,16 +6,14 @@
     "editor.fontSize": 12,
     "editor.wordWrap": "on",
     "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "none", // avoids spammy whitespace dots
 
-    "workbench.colorTheme": "Monokai Classic",
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.colorTheme": "One Monokai",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
 
-    "terminal.integrated.defaultProfile.linux": "/usr/bin/zsh",
+    "terminal.integrated.defaultProfile.linux": "zsh",
 
     "latex-workshop.view.pdf.viewer": "browser",
     "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
@@ -47,6 +45,7 @@
         "<C-b>": false,  // open/close leftbar
         "<C-f>": false,  // find
         "<C-k>": false,  // +z: zen
+        "<C-j>": false,  // toggle bottom panel
     },
     "vim.normalModeKeyBindingsNonRecursive": [
         {
@@ -106,6 +105,10 @@
             "after": ["p", "g", "v", "y"]
         }
     ],
-    "editor.renderWhitespace": "none",
-    "workbench.iconTheme": "Monokai Classic Icons",
+
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+
+    // extra virtualenv search path
+    "python.venvPath": "${env:HOME}/.cache/pypoetry/virtualenvs",
 }

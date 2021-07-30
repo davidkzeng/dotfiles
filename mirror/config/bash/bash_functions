@@ -30,6 +30,18 @@ function pcsv() {
     column -t -s, -n "$@" | less -S
 }
 
+function vcsv() {
+    column -t -s, -n "$@" | vim - -R -u NONE -N +'map <right> 30zl
+                                                  map <left> 30zh
+                                                  map <C-d> 30jzz
+                                                  map <C-u> 30kzz
+                                                  map q :qa<CR>
+                                                  set number scrollopt=hor scrollbind nowrap cursorline
+                                                  1sp
+                                                  winc w
+                                                 '
+}
+
 function grepcode() {
     search=$1
     target=${2:-.}

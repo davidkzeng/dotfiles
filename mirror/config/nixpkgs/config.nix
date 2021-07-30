@@ -19,6 +19,10 @@
                 shellcheck
                 cloc
 
+                # data manipulation
+                jq
+                xsv
+
                 # dev languages, tools
                 git
                 nodejs

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Setup standard interactive shell environment for bash or zsh
+# contains non shell-specific setup
 # Compatible with bash and zsh
-# Should be moved directly to bashrc/zshrc once all functionality is confirmed
 
 function has_cmd() {
     [[ -x "$(command -v $1)" ]]
@@ -16,6 +16,7 @@ fi
 
 export VISUAL="$VIM_BIN"
 export EDITOR="$VISUAL"
+export EMAIL="davidzeng.42@gmail.com"
 
 # History File Settings
 HISTSIZE=10000
