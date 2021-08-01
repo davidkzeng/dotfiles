@@ -51,6 +51,7 @@ to_link=(
     config/nixpkgs
     config/Code/User/settings.json
     config/Code/User/keybindings.json
+    config/lattedockrc
 )
 for file in "${to_link[@]}"; do
     safe_link "$home_mirror/$file" "$HOME/.$file"
