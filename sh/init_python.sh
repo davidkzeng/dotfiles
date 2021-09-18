@@ -13,6 +13,7 @@ sh_dir="$(dirname "$(realpath "$0")")"
 
 if ! has_cmd python3; then
     sudo apt install python3
+    sudo apt install python3.8-venv
 fi
 
 if ! has_cmd pip3; then
