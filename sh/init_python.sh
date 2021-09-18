@@ -16,6 +16,10 @@ if ! has_cmd python3; then
     sudo apt install python3.8-venv
 fi
 
+if ! has_cmd python; then
+    sudo apt install python-is-python3
+fi
+
 if ! has_cmd pip3; then
     sudo apt install python3-pip
 fi
