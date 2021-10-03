@@ -1,3 +1,4 @@
 [submodule "custom/research-tools"]
 	path = custom/research-tools
 	url = git@github.com:davidkzeng/research-tools.git
+	branch = master
