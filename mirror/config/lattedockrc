@@ -1,3 +1,12 @@
+[LatteSettingsDialog]
+downloadWindowSize=980,600
+windowSize=1100,750
+
+[LatteSettingsDialog][TabLayouts]
+columnWidths=77,508,129,104
+sortColumn=3
+sortOrder=0
+
 [PlasmaThemeExtended]
 outlineWidth=1
 
@@ -7,7 +16,7 @@ outlineWidth=1
 12=DP-1:::0,0 1920x1080
 13=DP-1-1:::0,0 1920x1080
 14=DP-1-3:::0,0 1920x1080
-15=DP-2:::0,0 1920x1080
+15=DP-2:::1920,0 3840x2160
 16=DP-1-2:::0,0 1920x1080
 
 [UniversalSettings]

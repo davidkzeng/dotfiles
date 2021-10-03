@@ -30,6 +30,7 @@
                 gnumake
                 google-cloud-sdk
                 linuxPackages.perf
+                texlive.combined.scheme-full # large install
 
                 # personal apps
                 pandoc
