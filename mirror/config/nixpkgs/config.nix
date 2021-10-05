@@ -28,7 +28,6 @@
                 nodejs
                 sqlite
                 gnumake
-                google-cloud-sdk
                 linuxPackages.perf
 
                 # personal apps
@@ -40,10 +39,11 @@
             pathsToLink = [ "/share/man" "/share/doc" "/bin" ];
             extraOutputsToInstall = [ "man" "doc" ];
         };
-        fullPackages = pkgs.buildEnv {
-            name = "full-packages";
+        extraPackages = pkgs.buildEnv {
+            name = "extra-packages";
             paths = [
                 texlive.combined.scheme-full # large install
+                google-cloud-sdk
             ];
         };
     };
