@@ -30,7 +30,6 @@
                 gnumake
                 google-cloud-sdk
                 linuxPackages.perf
-                texlive.combined.scheme-full # large install
 
                 # personal apps
                 pandoc
@@ -38,8 +37,14 @@
                 htop
                 neofetch
             ];
+            pathsToLink = [ "/share/man" "/share/doc" "/bin" ];
+            extraOutputsToInstall = [ "man" "doc" ];
         };
-        pathsToLink = [ "/share/man" "/share/doc" "/bin" ];
-        extraOutputsToInstall = [ "man" "doc" ];
+        fullPackages = pkgs.buildEnv {
+            name = "full-packages";
+            paths = [
+                texlive.combined.scheme-full # large install
+            ];
+        };
     };
 }
