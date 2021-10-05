@@ -2,18 +2,25 @@
 
 alias vim="$VIM_BIN"
 
-if has_cmd python3; then
-    if ! has_cmd python || [[ "$(python --version)" =~ "Python 2.*" ]]; then
-        alias python='python3'
-        alias pip='pip3'
-    fi
-fi
-
 alias venv='virtualenv'
 alias venva='source venv/bin/activate'
 
 alias wget-agent='wget --user-agent="Mozilla/5.0"' # Get around 403 forbidden with wget
 
+if [[ -x /usr/bin/dircolors ]]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
 if has_cmd zsh; then
     alias tmux='SHELL=$(which zsh) tmux'
+fi
+
+if has_cmd git; then
+    alias ga='git add'
+    alias gc='git commit'
+    alias gl='git log'
 fi

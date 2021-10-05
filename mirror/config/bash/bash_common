@@ -22,14 +22,6 @@ export EMAIL="davidzeng.42@gmail.com"
 HISTSIZE=10000
 HISTFILESIZE=10000
 
-if [[ -x /usr/bin/dircolors ]]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -39,15 +31,15 @@ export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive # something weird with nix 
 BASH_CONFIG_HOME="$XDG_CONFIG_HOME/bash"
 
 if [[ -f "$BASH_CONFIG_HOME/bash_functions" ]]; then
-    source "$BASH_CONFIG_HOME/bash_functions"
+    . "$BASH_CONFIG_HOME/bash_functions"
 fi
 
 # Aliases can depend on functions
 if [[ -f "$BASH_CONFIG_HOME/bash_aliases" ]]; then
-    source "$BASH_CONFIG_HOME/bash_aliases"
+    . "$BASH_CONFIG_HOME/bash_aliases"
 fi
 
 # Miscellaneous aliases, functions, etc. not worth preserving or generalizing beyond the current system
 if [[ -f "$BASH_CONFIG_HOME/bash_local" ]]; then
-    source "$BASH_CONFIG_HOME/bash_local"
+    . "$BASH_CONFIG_HOME/bash_local"
 fi
