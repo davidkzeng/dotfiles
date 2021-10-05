@@ -20,6 +20,7 @@ if has_cmd zsh; then
 fi
 
 if has_cmd git; then
+    alias g='git'
     alias ga='git add'
     alias gc='git commit'
     alias gl='git log'
