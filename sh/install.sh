@@ -15,3 +15,7 @@ if ! has_cmd nix; then
 fi
 
 nix-env --install -A nixpkgs.myPackages
+
+if [[ "${FULL_INSTALL}" -eq 1 ]]; then
+    nix-env --install -A nixpkgs.extraPackages
+fi

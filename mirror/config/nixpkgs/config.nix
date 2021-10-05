@@ -45,6 +45,8 @@
                 texlive.combined.scheme-full # large install
                 google-cloud-sdk
             ];
+            pathsToLink = [ "/share/man" "/share/doc" "/bin" ];
+            extraOutputsToInstall = [ "man" "doc" ];
         };
     };
 }

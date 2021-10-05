@@ -5,15 +5,17 @@
 set -eu -o pipefail
 
 function usage() {
-    echo "./init [--install | -i] [--force-link | -f]"
+    echo "./init [--install | -i] [--force-link | -f] [--config | -c]"
 }
 
 install=0
 force_link=0
+config="default.sh"
 while (( "$#" )); do
     case $1 in
         -i | --install) install=1 ;;
         -f | --force-link) force_link=1 ;;
+        -c | --config) shift; config="$1" ;;
         -h | --help) usage; exit ;;
         *) usage; exit 1 ;;
     esac
@@ -23,6 +25,8 @@ done
 bin_dir="$(dirname "$(realpath "$0")")"
 dotfiles_dir="$(dirname "$bin_dir")"
 sh_dir="$dotfiles_dir/sh"
+
+. "$sh_dir/$config"
 
 # Create symlinks for dotfiles
 "$sh_dir"/link_files.sh "$dotfiles_dir" "$force_link"
