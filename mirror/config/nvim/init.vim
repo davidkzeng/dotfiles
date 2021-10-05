@@ -99,34 +99,41 @@ command! OpenVimConfig call OpenVimConfig()
 command! SourceVimConfig :source $MYVIMRC
 
 call plug#begin('~/.vim/plugged')
+    " top and bottom bar
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
+    " color scheme
     Plug 'tomasr/molokai'
 
+    " indentation
     Plug 'yggdroot/indentline'
-
-    Plug 'mhinz/vim-signify'
-
     Plug 'roryokane/detectindent'
 
+    " vcs
+    Plug 'mhinz/vim-signify'
+    Plug 'tpope/vim-fugitive'
+
+    " lsp
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+    " smarter search
     Plug 'henrik/vim-indexed-search'
 
     Plug 'xolox/vim-session'
     Plug 'xolox/vim-misc'
 
+    " better <C-x>
     Plug 'moll/vim-bbye'
 
     " Navigation
     Plug 'junegunn/fzf'
     Plug 'preservim/nerdtree'
-
-    Plug 'davidkzeng/vim-instant-markdown', {'branch': 'smdv_updates', 'for': 'markdown'}
-
-    Plug 'rust-lang/rust.vim'
     Plug 'jremmen/vim-ripgrep'
+
+    " language specific
+    Plug 'davidkzeng/vim-instant-markdown', {'branch': 'smdv_updates', 'for': 'markdown'}
+    Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " detect-indent settings

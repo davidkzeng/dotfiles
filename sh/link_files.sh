@@ -2,6 +2,10 @@
 
 echo ">>> Started link_files.sh"
 
+if [[ "$#" != "2" ]]; then
+    exit 1
+fi
+
 dotfiles_dir=$1
 force_link=$2
 home_mirror="${dotfiles_dir}/mirror"
@@ -52,6 +56,7 @@ to_link=(
     config/Code/User/settings.json
     config/Code/User/keybindings.json
     config/lattedockrc
+    ssh/config
 )
 for file in "${to_link[@]}"; do
     safe_link "$home_mirror/$file" "$HOME/.$file"
