@@ -11,8 +11,11 @@ echo ">>> Started init_python.sh"
 sh_dir="$(dirname "$(realpath "$0")")"
 . "${sh_dir}/utils.sh"
 
+sudo apt update
+
 if ! has_cmd python3; then
     sudo apt install python3
+    sudo apt-get install python-is-python3
 fi
 
 if ! has_cmd pip3; then
@@ -20,7 +23,8 @@ if ! has_cmd pip3; then
 fi
 
 if ! has_cmd virtualenv; then
-    python3 -m pip install --user virtualenv
+    sudo apt install python3-venv # not sure why this is needed
+    # python3 -m pip install --user virtualenv
 fi
 
 if ! has_cmd pipx; then
