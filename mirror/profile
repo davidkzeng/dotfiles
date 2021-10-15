@@ -12,8 +12,8 @@
 PATH="$HOME/bin/custom:$HOME/bin:$HOME/.local/bin:$PATH"
 
 # added by cargo (rust)
-if [[ -d "$HOME/.cargo/bin" ]]; then
-    PATH="$HOME/.cargo/bin:$PATH"
+if [[ -d "$HOME/.cargo" ]]; then
+    . "$HOME/.cargo/env"
 fi
 
 NPM_CONFIG_PREFIX="$HOME/.npm-packages"

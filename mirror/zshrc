@@ -37,8 +37,13 @@ bindkey '^_' undo # ctrl + _ : undo last tab completion
 bindkey -v # vi mode
 bindkey '^r' history-incremental-search-backward
 
+# cat -v + type in home, end to confirm escape sequencces
 bindkey  "^[[H"   beginning-of-line # home
 bindkey  "^[[F"   end-of-line       # end
+
+# escape sequences when I run tmux
+bindkey  "^[OH"   beginning-of-line # home
+bindkey  "^[OF"   end-of-line       # end
 
 if has_cmd direnv; then
   eval "$(direnv hook zsh)"

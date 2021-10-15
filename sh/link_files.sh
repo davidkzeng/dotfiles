@@ -20,15 +20,15 @@ function safe_link() {
             echo "$link already links to target... ignoring"
         else
             if [[ "$force_link" -eq 1 ]]; then
-                echo "WARN: $link already exists... replacing with symlink"
+                echo "WARN: $link already exists at dest... replacing with symlink"
                 rm -r "$link"
                 ln -s "$target" "$link"
             else
-                echo "WARN: $link already exists... ignoring"
+                echo "WARN: $link already exists at dest... ignoring"
             fi
         fi
     elif [[ ! -e "$target" ]]; then
-        echo "$target does not exist... ignoring"
+        echo "$target does not exist in mirror... ignoring"
     else
         if [[ -L "$link" ]]; then
             echo "Removing broken symlink $link"
@@ -50,12 +50,11 @@ to_link=(
     zshrc
     config/bash
     config/nvim
-    config/tmux
+    config/tmux/tmux.conf
     config/git
     config/nixpkgs
     config/Code/User/settings.json
     config/Code/User/keybindings.json
-    config/lattedockrc
     ssh/config
 )
 for file in "${to_link[@]}"; do

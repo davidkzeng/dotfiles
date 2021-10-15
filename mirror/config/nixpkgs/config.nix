@@ -1,6 +1,6 @@
 {
     packageOverrides = pkgs: with pkgs; {
-        myPackages = pkgs.buildEnv {
+        myPackages = buildEnv {
             name = "my-packages";
             paths = [
                 # nix related
@@ -39,7 +39,8 @@
             pathsToLink = [ "/share/man" "/share/doc" "/bin" ];
             extraOutputsToInstall = [ "man" "doc" ];
         };
-        extraPackages = pkgs.buildEnv {
+
+        extraPackages = buildEnv {
             name = "extra-packages";
             paths = [
                 texlive.combined.scheme-full # large install
