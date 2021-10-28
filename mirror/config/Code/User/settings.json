@@ -50,15 +50,11 @@
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["[", "t"],
-            "commands": [
-                ":tabprev"
-            ]
+            "after": ["g", "T"],
         },
         {
             "before": ["]", "t"],
-            "commands": [
-                ":tabnext"
-            ]
+            "after": ["g", "t"],
         },
         {
             "before": ["D"],
@@ -92,6 +88,14 @@
         {
             "before": ["g", "h"],
             "commands": ["editor.action.showHover"]
+        },
+        {
+            "before": ["\\", "g", "f"],
+            "commands": ["editor.action.quickFix"],
+        },
+        {
+            "before": ["\\", "g", "r"],
+            "commands": ["editor.action.rename"],
         },
 
         {
