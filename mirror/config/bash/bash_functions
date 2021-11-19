@@ -18,11 +18,11 @@ function date_epoch() {
     limit=9000000000
     ts=$1
     if (( $ts < $limit )); then
-        date -d @${ts}
+        date -d @${ts} --utc +"%Y/%m/%d %T %Z"
     elif (( $ts < $limit * 1000 )); then
-        date -d @$(($ts / 1000))
+        date -d @$(($ts / 1000)).$(($ts % 1000)) --utc +"%Y/%m/%d %T.%3N %Z"
     else
-        date -d @$(($ts / 1000000))
+        date -d @$(($ts / 1000000)).$(($ts % 1000000)) --utc +"%Y/%m/%d %T.%6N %Z"
     fi
 }
 
@@ -43,43 +43,32 @@ function vcsv() {
                         '
 }
 
-function grepcode() {
-    search=$1
-    target=${2:-.}
-    grep -r --include \*.py --include \*.c --include \*.rs --include \*.sh $search $target
+function fz() {
+    target=$1
+    if [[ "$2" == "--ignore" ]]; then
+        # rg --files respects .gitignore files
+        $target $(FZF_DEFAULT_COMMAND="rg --files" fzf)
+    else
+        $target $(fzf)
+    fi
 }
 
-if has_cmd fzf; then
-    if has_cmd rg; then
-        function fz() {
-            target=$1
-            if [[ "$2" == "--ignore" ]]; then
-                # rg --files respects .gitignore files
-                $target $(FZF_DEFAULT_COMMAND="rg --files" fzf)
-            else
-                $target $(fzf)
-            fi
-        }
-    else
-        function fz() {
-            target=$1
-            $target $(fzf)
-        }
-    fi
+function lfz() {
+    fz less --ignore
+}
 
-    function lfz() {
-        fz less
-    }
+function vfz() {
+    fz $VIM_BIN --ignore
+}
 
-    function vfz() {
-        fz $VIM_BIN
-    }
+function lfza() {
+    fz less
+}
 
-    function lfzi() {
-        fz less --ignore
-    }
+function vfza() {
+    fz $VIM_BIN
+}
 
-    function vfzi() {
-        fz $VIM_BIN --ignore
-    }
-fi
+function replace() {
+    rg --files ${3} | xargs -I {} sed -i "s/${1}/${2}/g" {}
+}

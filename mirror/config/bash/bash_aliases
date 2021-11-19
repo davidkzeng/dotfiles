@@ -2,12 +2,7 @@
 
 alias vim="$VIM_BIN"
 
-alias venv='virtualenv'
-alias venva='source venv/bin/activate'
-
-alias wget-agent='wget --user-agent="Mozilla/5.0"' # Get around 403 forbidden with wget
-
-if [[ -x /usr/bin/dircolors ]]; then
+if has_cmd dircolors; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
