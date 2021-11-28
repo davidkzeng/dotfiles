@@ -85,9 +85,6 @@ set updatetime=1000
 " delete without saving to buffer
 nnoremap D "_dd
 
-" vim-bbye remappings
-nnoremap <C-x> :Bdelete<CR>
-
 " Clear search highlights
 nnoremap <C-n> :noh<CR>
 
@@ -145,8 +142,8 @@ call plug#begin(datahome . '/plugged')
     Plug 'moll/vim-bbye'
 
     " navigation
-    Plug 'junegunn/fzf'
     Plug 'preservim/nerdtree'
+    Plug 'junegunn/fzf'
     Plug 'jremmen/vim-ripgrep'
 
     " lsp
@@ -194,7 +191,10 @@ let g:session_autosave = 0
 let g:session_autoload = 0
 let g:session_directory = datahome . '/sessions'
 
-" NerdTree settings
+" vim-bbye settings
+nnoremap <C-x> :Bdelete<CR>
+
+" nerdtree settings
 nnoremap <leader>t :NERDTreeToggle<CR>
 let g:NERDTreeMinimalUI = 1 " Disable help text
 

@@ -61,7 +61,11 @@ for file in "${to_link[@]}"; do
     safe_link "$home_mirror/$file" "$HOME/.$file"
 done
 
-mkdir -p "$HOME/bin"
-safe_link "$home_mirror/bin/dotfiles" "$HOME/bin/dotfiles"
+to_install=(
+    smart-pandoc
+)
+for file in "${to_install[@]}"; do
+    safe_link "$home_mirror/bin/$file" "$HOME/.local/bin/$file"
+done
 
 echo "<<< Completed link_files.sh"

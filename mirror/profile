@@ -9,7 +9,7 @@
 #umask 022
 
 # user specific paths
-PATH="$HOME/bin/custom:$HOME/bin:$HOME/.local/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 
 # added by cargo (rust)
 if [[ -d "$HOME/.cargo" ]]; then
