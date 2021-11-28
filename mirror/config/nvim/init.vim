@@ -1,4 +1,16 @@
-" Compatible with nvim 0.4+, vim 8+
+" vim 8.0+, nvim 0.4+
+
+" Respect XDG_DATA_HOME environment variable
+if has('nvim')
+    let datahome = stdpath('data')
+    let cachehome = stdpath('cache')
+else
+    let datahome = $XDG_DATA_HOME . '/vim'
+    let cachehome = $XDG_CACHE_HOME . '/vim'
+endif
+
+set nocompatible
+
 set number relativenumber
 set cursorline
 
@@ -8,23 +20,27 @@ set backspace=indent,eol,start
 set visualbell
 set t_vb=
 
-" Enable mouse support in all modes
+" enable mouse support in all modes
 set mouse=a
 
-" Tabs and spacing
+" tabs and spacing
 set tabstop=4 shiftwidth=4 softtabstop=4
 set shiftround
 set expandtab
 set smarttab
 set autoindent
+augroup FileIndent
+    autocmd!
+    autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2
+augroup END
 
-" Search
+" search
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 
-" Completion
+" cmd line completion
 set wildmenu
 set wildignorecase
 set wildmode=full
@@ -33,24 +49,28 @@ set colorcolumn=120
 highlight ColorColumn ctermbg=lightgreen guibg=lightgreen
 highlight clear SignColumn
 
-" Permanant gutter column
+" permanant gutter column
 set signcolumn=yes
 
-" Respect XDG_DATA_HOME environment variable
-if empty($XDG_DATA_HOME)
-    let datahome = $HOME . '/.local/share/vim'
-else
-    let datahome = $XDG_DATA_HOME . '/vim'
-endif
-
-" Persistent undo settings
-set undofile " Save undo history
-set undolevels=1000 " Save a maximum of 1000 undos
-set undoreload=10000 " Save undo history when reloading a file
+" undo save backup
 let &undodir=datahome . '/undo/'
+let &directory=datahome . '/swap/'
+let &backupdir=datahome . '/backup/'
+
 if !isdirectory(&undodir)
     call mkdir(&undodir, "p", 0700)
 endif
+if !isdirectory(&directory)
+    call mkdir(&directory, "p", 0700)
+endif
+if !isdirectory(&backupdir)
+    call mkdir(&backupdir, "p", 0700)
+endif
+
+" persistent undo
+set undofile " Save undo history
+set undolevels=1000 " Save a maximum of 1000 undos
+set undoreload=10000 " Save undo history when reloading a file
 
 " Prevent attempt to link with terminal clipboard
 " Can lower startup time when used through ssh
@@ -71,12 +91,6 @@ nnoremap <C-x> :Bdelete<CR>
 " Clear search highlights
 nnoremap <C-n> :noh<CR>
 
-nnoremap ]b :bnext<CR>
-nnoremap [b :bprevious<CR>
-
-nnoremap <C-Up>   <C-u>
-nnoremap <C-Down> <C-d>
-
 nnoremap <Leader>l :set invlist<cr>
 " reselects and copies pasted text
 vnoremap p pgvy
@@ -96,15 +110,21 @@ function! OpenVimConfig()
 endfunction
 command! OpenVimConfig call OpenVimConfig()
 
-command! SourceVimConfig :source $MYVIMRC
+" VimPlug
+if has('nvim')
+    let vimplugfile=datahome . '/site/autoload/plug.vim'
+else
+    let vimplugfile='~/.vim/autoload/plug.vim'
+endif
 
-call plug#begin('~/.vim/plugged')
+if empty(glob(vimplugfile))
+  silent execute '!curl -fLo ' . vimplugfile . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
+
+call plug#begin(datahome . '/plugged')
     " top and bottom bar
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-
-    " color scheme
-    Plug 'tomasr/molokai'
 
     " indentation
     Plug 'yggdroot/indentline'
@@ -114,39 +134,47 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-fugitive'
 
-    " lsp
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-    " smarter search
-    Plug 'henrik/vim-indexed-search'
-
+    " sessions
     Plug 'xolox/vim-session'
     Plug 'xolox/vim-misc'
+
+    " print # of matches in search
+    Plug 'henrik/vim-indexed-search'
 
     " better <C-x>
     Plug 'moll/vim-bbye'
 
-    " Navigation
+    " navigation
     Plug 'junegunn/fzf'
     Plug 'preservim/nerdtree'
     Plug 'jremmen/vim-ripgrep'
 
+    " lsp
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
     " language specific
     Plug 'davidkzeng/vim-instant-markdown', {'branch': 'smdv_updates', 'for': 'markdown'}
     Plug 'rust-lang/rust.vim'
+
+    " color scheme
+    Plug 'tomasr/molokai'
 call plug#end()
 
-" detect-indent settings
+" Plugin Settings
 
-" Override default indentation
-augroup FileIndent
-    autocmd!
-    " html personal preference
-    autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2
-augroup END
+" vim-airline settings
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#whitespace#checks = []
 
-" commonmark suggest 4 space indentation
-" rust, python have standardized style with four space tabs
+" vim-airline-themes settings
+let g:airline_theme = 'molokai'
+
+" indentline settings
+let g:indentLine_conceallevel = 1
+let g:indentLine_fileTypeExclude = ['markdown', 'json']
+
+" detectindent settings
 function! IgnorableDetectIndent()
     if index(['markdown', 'rust', 'python', 'html'], &filetype) != -1
         return
@@ -158,29 +186,27 @@ augroup DetectIndent
     autocmd BufReadPost * call IgnorableDetectIndent()
 augroup END
 
-" vim-airline settings
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#whitespace#checks = []
-
-let g:airline_theme = 'molokai'
-
 " vim-signify settings
 let g:signify_vcs_list = [ 'hg', 'git' ]
 
 " vim-session settings
 let g:session_autosave = 0
 let g:session_autoload = 0
+let g:session_directory = datahome . '/sessions'
 
-" indentline settings
-let g:indentLine_conceallevel = 1
-" either the conceallevel or indentation lines themselves are annoying with
-" these filetypes
-let g:indentLine_fileTypeExclude = ['markdown', 'json']
+" NerdTree settings
+nnoremap <leader>t :NERDTreeToggle<CR>
+let g:NERDTreeMinimalUI = 1 " Disable help text
 
-" CoC settings
+" fzf settings
+if executable('rg')
+    command! FZ call fzf#run(fzf#wrap({'source': 'rg --files'}))
+    command! FZA call fzf#run(fzf#wrap({}))
+endif
 
-" CoC shortcuts
+" coc.nvim settings
+
+" shortcuts
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -191,7 +217,7 @@ nmap <silent> <Leader>gd <Plug>(coc-diagnostic-info)
 nmap <silent> <Leader>gr <Plug>(coc-rename)
 nmap <silent> <Leader>gf :CocFix<CR>
 
-" CoC Tab Completion
+" tab completion
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
@@ -201,7 +227,7 @@ inoremap <silent><expr> <Tab>
     \ <SID>check_back_space() ? "\<Tab>" :
     \ coc#refresh()
 
-" CoC show documentation
+" show documentation
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
 function! s:show_documentation()
     if &filetype == 'vim'
@@ -217,16 +243,6 @@ let g:instant_markdown_slow = 1 " Only update on save/idle
 let g:instant_markdown_autostart = 0 " :InstantMarkdownPreview to manually trigger
 let g:instant_markdown_python = 1 " 1 = smdv, 0 = instant-markdown-d
 let g:instant_markdown_flavor = 'commonmark_x'
-
-" NerdTree settings
-nnoremap <leader>t :NERDTreeToggle<CR>
-let g:NERDTreeMinimalUI = 1 " Disable help text
-
-" fzf settings
-if executable('rg')
-    command! FZ call fzf#run(fzf#wrap({'source': 'rg --files'}))
-    command! FZA call fzf#run(fzf#wrap({}))
-endif
 
 " molokai settings
 let g:molokai_original = 1
