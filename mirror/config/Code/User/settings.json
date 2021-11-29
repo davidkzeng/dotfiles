@@ -8,10 +8,7 @@
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "none", // avoids spammy whitespace dots
 
-    "workbench.colorTheme": "One Monokai",
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter.notebook.ipynb"
-    },
+    "workbench.colorTheme": "Monokai Dimmed",
 
     "terminal.integrated.defaultProfile.linux": "zsh",
 
@@ -112,7 +109,4 @@
 
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
-
-    // extra virtualenv search path
-    "python.venvPath": "${env:HOME}/.cache/pypoetry/virtualenvs",
 }

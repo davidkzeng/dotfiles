@@ -43,8 +43,7 @@
         extraPackages = buildEnv {
             name = "extra-packages";
             paths = [
-                texlive.combined.scheme-full # large install
-                google-cloud-sdk
+                texlive.combined.scheme-medium # large install
             ];
             pathsToLink = [ "/share/man" "/share/doc" "/bin" ];
             extraOutputsToInstall = [ "man" "doc" ];
