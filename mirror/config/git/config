@@ -6,4 +6,4 @@
 [credential]
 	helper = cache --timeout=3600
 [core]
-	excludesfile = /home/david/.config/git/gitignore_global
+	excludesfile = ~/.config/git/gitignore_global
