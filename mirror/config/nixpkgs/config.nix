@@ -25,6 +25,7 @@
 
                 # dev languages, tools
                 git
+                nodejs
                 sqlite
                 gnumake
                 linuxPackages.perf
@@ -42,7 +43,9 @@
         extraPackages = buildEnv {
             name = "extra-packages";
             paths = [
-                texlive.combined.scheme-medium # large install
+                (texlive.combine {
+                    inherit (texlive) scheme-medium enumitem;
+                })
             ];
             pathsToLink = [ "/share/man" "/share/doc" "/bin" ];
             extraOutputsToInstall = [ "man" "doc" ];

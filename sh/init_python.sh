@@ -5,7 +5,6 @@
 # 2. pip incompatibility
 
 sh_dir="$(dirname "$(realpath "$0")")"
-. "${sh_dir}/utils.sh"
 
 # ubuntu quirk
 if ! dpkg -l python-is-python3 > /dev/null; then
@@ -26,8 +25,4 @@ fi
 
 if ! pipx list | grep python-language-server > /dev/null; then
     pipx install python-language-server
-fi
-
-if ! pipx list | grep smdv > /dev/null; then
-    pipx install git+https://github.com/davidkzeng/smdv.git
 fi

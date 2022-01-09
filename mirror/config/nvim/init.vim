@@ -150,7 +150,6 @@ call plug#begin(datahome . '/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     " language specific
-    Plug 'davidkzeng/vim-instant-markdown', {'branch': 'smdv_updates', 'for': 'markdown'}
     Plug 'rust-lang/rust.vim'
 
     " color scheme
