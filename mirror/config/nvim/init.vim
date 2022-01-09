@@ -97,6 +97,20 @@ nnoremap ]q :cn<CR>
 nnoremap [q :cp<CR>
 nnoremap <Leader>q :ccl<CR>
 
+" Buffer
+nnoremap ]b :bn<CR>
+nnoremap [b :bp<CR>
+
+function! s:systemasync(cmd)
+    let cmd = a:cmd
+    if has('nvim')
+        let job_id = jobstart(cmd)
+    else
+        let cmd = cmd . ' &'
+        call system(cmd)
+    endif
+endfunction
+
 function! TrimWhitespace()
     %s/\s*$//
 endfunction
@@ -106,6 +120,16 @@ function! OpenVimConfig()
     :e $MYVIMRC
 endfunction
 command! OpenVimConfig call OpenVimConfig()
+
+function! SmartPandoc()
+    :call s:systemasync('smart-pandoc ' . expand('%'))
+endfunction
+command! SmartPandoc call SmartPandoc()
+
+function! OpenMD()
+    :call s:systemasync('okular ' . expand('%')[:-3] . 'pdf')
+endfunction
+command! OpenMD call OpenMD()
 
 " VimPlug
 if has('nvim')
