@@ -32,13 +32,32 @@ sh_dir="$dotfiles_dir/sh"
 "$sh_dir"/link_files.sh "$dotfiles_dir" "$force_link"
 
 if [[ $install -eq 1 ]]; then
-    export NIX_INSTALLER_NO_MODIFY_PROFILE=1
-    "$sh_dir"/install.sh
+    # nix install
+    if [[ ! -e "~/.nix-profile/bin/nix" ]]; then
+        export NIX_INSTALLER_NO_MODIFY_PROFILE=1
+        curl -L https://nixos.org/nix/install | sh
+        . ~/.nix-profile/etc/profile.d/nix.sh
+    fi
+
+    # nix packages install
+    nix-env --install -A nixpkgs.myPackages
+    if [[ "${FULL_INSTALL}" -eq 1 ]]; then
+        nix-env --install -A nixpkgs.extraPackages
+    fi
+
+    # setup PATH, other environment variables
     . ~/.profile
     . ~/.config/bash/bash_common
+
+    # install python packages
     "$sh_dir"/init_python.sh
-    "$sh_dir"/init_node.sh
-    "$sh_dir"/init_tmux.sh
-    "$sh_dir"/init_nvim.sh
-    "$sh_dir"/init_custom.sh
+
+    # install tmux
+    if [[ ! -d "$XDG_DATA_HOME/tmux/tpm" ]]; then
+        git clone https://github.com/tmux-plugins/tpm "$XDG_DATA_HOME/tmux/tpm"
+    fi
+
+    if [[ -z "$(ls -A $dotfiles_dir/custom/research-tools)" ]]; then
+        cd "$dotfiles_dir" && git submodule update --init
+    fi
 fi

@@ -1,47 +1,33 @@
 #!/bin/bash
 
-# Assume python3 with pip is available available
-# Install python based tools that are either
-# 1. unavailable in nix or
-# 2. would rather install through the python ecosystem
+# python via nix is too difficult
+# 1. need to install system dependencies expected by packages (e.x zlib)
+# 2. pip incompatibility
 
-set -e
-
-echo ">>> Started init_python.sh"
 sh_dir="$(dirname "$(realpath "$0")")"
 . "${sh_dir}/utils.sh"
 
-if ! has_cmd python3; then
-    sudo apt install python3
-    sudo apt install python3.8-venv
-fi
-
-if ! has_cmd python; then
+# ubuntu quirk
+if ! dpkg -l python-is-python3 > /dev/null; then
     sudo apt install python-is-python3
 fi
 
-if ! has_cmd pip3; then
+if ! dpkg -l python3-pip > /dev/null; then
     sudo apt install python3-pip
 fi
 
-if ! has_cmd virtualenv; then
-    sudo apt install python3-venv
-fi
-
-if ! has_cmd pipx; then
+if ! pip list | grep pipx > /dev/null; then
     python3 -m pip install --user pipx
 fi
 
-if ! has_cmd poetry; then
+if ! pipx list | grep poetry > /dev/null; then
     pipx install poetry
 fi
 
-if ! has_cmd pyls; then
+if ! pipx list | grep python-language-server > /dev/null; then
     pipx install python-language-server
 fi
 
-if ! has_cmd smdv; then
+if ! pipx list | grep smdv > /dev/null; then
     pipx install git+https://github.com/davidkzeng/smdv.git
 fi
-
-echo "<<< Completed init_python.sh"
