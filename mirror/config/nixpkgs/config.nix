@@ -25,7 +25,6 @@
 
                 # dev languages, tools
                 git
-                nodejs
                 sqlite
                 gnumake
                 linuxPackages.perf
