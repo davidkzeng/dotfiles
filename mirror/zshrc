@@ -10,7 +10,7 @@ alias szrc="source ~/.zshrc"
 # Use with $fg[green] or %{$fg[green]%}
 autoload -Uz colors && colors
 
-HISTFILE=~/.zsh_history
+HISTFILE="$XDG_DATA_HOME/zsh/history"
 setopt appendhistory
 setopt incappendhistory # Immediate append instead of on terminal exit
 setopt histignorealldups
@@ -24,10 +24,9 @@ setopt interactivecomments # allow hashes to comment-out directly in cmd line
 
 # Terminal Prompt
 PROMPT="%{$fg[green]%}%n@%m:%{$fg[blue]%}%~%{$reset_color%}$ "
-# PROMPT="%n@%m:%~$ "
 
 # Load completion
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -d "$XDG_DATA_HOME/zsh/compinit_dump"
 
 # Add colors in completions
 eval $(dircolors)

@@ -28,6 +28,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 
 export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive # something weird with nix + perl
 
+export LESSHISTFILE=- # disable .lesshst
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+
 BASH_CONFIG_HOME="$XDG_CONFIG_HOME/bash"
 
 if [[ -f "$BASH_CONFIG_HOME/bash_functions" ]]; then

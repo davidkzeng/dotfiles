@@ -55,6 +55,7 @@ to_link=(
     config/nixpkgs
     config/Code/User/settings.json
     config/Code/User/keybindings.json
+    config/python
     ssh/config
 )
 for file in "${to_link[@]}"; do

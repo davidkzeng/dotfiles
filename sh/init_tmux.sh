@@ -2,9 +2,8 @@
 
 echo ">>> Started init_tmux.sh"
 
-if [[ ! -d ~/.tmux/plugins/tpm ]]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    ~/.tmux/plugins/tpm/bin/install_plugins
+if [[ ! -d "$XDG_DATA_HOME/tmux/tpm" ]]; then
+    git clone https://github.com/tmux-plugins/tpm "$XDG_DATA_HOME/tmux/tpm"
 fi
 
 echo "<<< Completed init_tmux.sh"

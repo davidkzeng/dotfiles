@@ -1,0 +1,23 @@
+#!/usr/bin/python
+
+# python 3.6+
+
+import os
+import atexit
+import readline
+
+xdg_cache_home = os.environ.get('XDG_CACHE_HOME', os.path.expanduser('~/.cache'))
+history = os.path.join(xdg_cache_home, 'python_history')
+
+try:
+    readline.read_history_file(history)
+except OSError:
+    pass
+
+def write_history():
+    try:
+        readline.write_history_file(history)
+    except OSError:
+        pass
+
+atexit.register(write_history)
