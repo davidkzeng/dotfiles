@@ -88,7 +88,7 @@ nnoremap D "_dd
 " Clear search highlights
 nnoremap <C-n> :noh<CR>
 
-nnoremap <Leader>l :set invlist<cr>
+nnoremap <Leader>i :set invlist<cr>
 " reselects and copies pasted text
 vnoremap p pgvy
 
@@ -101,16 +101,6 @@ nnoremap <Leader>q :ccl<CR>
 nnoremap ]b :bn<CR>
 nnoremap [b :bp<CR>
 
-function! s:systemasync(cmd)
-    let cmd = a:cmd
-    if has('nvim')
-        let job_id = jobstart(cmd)
-    else
-        let cmd = cmd . ' &'
-        call system(cmd)
-    endif
-endfunction
-
 function! TrimWhitespace()
     %s/\s*$//
 endfunction
@@ -120,16 +110,6 @@ function! OpenVimConfig()
     :e $MYVIMRC
 endfunction
 command! OpenVimConfig call OpenVimConfig()
-
-function! SmartPandoc()
-    :call s:systemasync('smart-pandoc ' . expand('%'))
-endfunction
-command! SmartPandoc call SmartPandoc()
-
-function! OpenMD()
-    :call s:systemasync('okular ' . expand('%')[:-3] . 'pdf')
-endfunction
-command! OpenMD call OpenMD()
 
 " VimPlug
 if has('nvim')
@@ -173,8 +153,12 @@ call plug#begin(datahome . '/plugged')
     " lsp
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+    " snippets
+    Plug 'sirver/ultisnips'
+
     " language specific
     Plug 'rust-lang/rust.vim'
+    Plug 'lervag/vimtex'
 
     " color scheme
     Plug 'tomasr/molokai'
@@ -260,12 +244,12 @@ function! s:show_documentation()
     endif
 endfunction
 
-" vim-instant-markdown settings
-let g:instant_markdown_mathjax = 1
-let g:instant_markdown_slow = 1 " Only update on save/idle
-let g:instant_markdown_autostart = 0 " :InstantMarkdownPreview to manually trigger
-let g:instant_markdown_python = 1 " 1 = smdv, 0 = instant-markdown-d
-let g:instant_markdown_flavor = 'commonmark_x'
+" snippets
+let g:UltiSnipsExpandTrigger="<Leader>s"
+
+" vimtex settings
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_syntax_conceal_disable = 1
 
 " molokai settings
 let g:molokai_original = 1
