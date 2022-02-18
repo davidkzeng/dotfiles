@@ -102,7 +102,9 @@ nnoremap ]b :bn<CR>
 nnoremap [b :bp<CR>
 
 function! TrimWhitespace()
-    %s/\s*$//
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e # don't add to search history
+    call winrestview(l:save) # restore cursor/view position
 endfunction
 command! TrimWhiteSpace call TrimWhitespace()
 
@@ -245,11 +247,12 @@ function! s:show_documentation()
 endfunction
 
 " snippets
-let g:UltiSnipsExpandTrigger="<Leader>s"
+let g:UltiSnipsExpandTrigger="<C-s>"
 
 " vimtex settings
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_syntax_conceal_disable = 1
+let g:vimtex_compiler_latexmk = {'build_dir' : 'build'}
 
 " molokai settings
 let g:molokai_original = 1

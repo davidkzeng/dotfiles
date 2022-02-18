@@ -1,11 +1,23 @@
-snippet begin "begin_end" b
+snippet "\\?begin" "begin_end" br
 \begin{$1}
 	${2:${VISUAL}}
 \end{$1}
 endsnippet
 
-snippet item "itemize" b
+snippet "\\?item(ize)?" "itemize" br
 \begin{itemize}
 	\item $1
 \end{itemize}
+endsnippet
+
+snippet "\\?enum(erate)?" "enumerate" br
+\begin{enumerate}
+	\item $1
+\end{enumerate}
+endsnippet
+
+snippet "\\?alignat" "alignat" br
+\begin{alignat*}{$1}
+	${2:${VISUAL}}
+\end{alignat*}
 endsnippet
