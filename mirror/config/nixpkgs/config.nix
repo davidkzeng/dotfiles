@@ -1,6 +1,6 @@
 {
     packageOverrides = pkgs: with pkgs; {
-        myPackages = buildEnv {
+        myPackages = pkgs.buildEnv {
             name = "my-packages";
             paths = [
                 # nix related
@@ -25,7 +25,6 @@
 
                 # dev languages, tools
                 git
-                nodejs
                 sqlite
                 gnumake
                 linuxPackages.perf
@@ -34,7 +33,7 @@
                 pandoc
                 zola
                 htop
-                neofetch
+                screenfetch
             ];
             pathsToLink = [ "/share/man" "/share/doc" "/bin" ];
             extraOutputsToInstall = [ "man" "doc" ];

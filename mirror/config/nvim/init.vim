@@ -84,6 +84,7 @@ set updatetime=1000
 " Remappings
 " delete without saving to buffer
 nnoremap D "_dd
+nnoremap x "_x
 
 " Clear search highlights
 nnoremap <C-n> :noh<CR>
@@ -103,8 +104,8 @@ nnoremap [b :bp<CR>
 
 function! TrimWhitespace()
     let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e # don't add to search history
-    call winrestview(l:save) # restore cursor/view position
+    keeppatterns %s/\s\+$//e " don't add to search history
+    call winrestview(l:save) " restore cursor/view position
 endfunction
 command! TrimWhiteSpace call TrimWhitespace()
 

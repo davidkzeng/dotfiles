@@ -46,3 +46,5 @@ fi
 if [[ -f "$BASH_CONFIG_HOME/bash_local" ]]; then
     . "$BASH_CONFIG_HOME/bash_local"
 fi
+
+export PATH="/home/davidz/.avm/bin":$PATH

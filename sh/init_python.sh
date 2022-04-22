@@ -7,12 +7,16 @@
 sh_dir="$(dirname "$(realpath "$0")")"
 
 # ubuntu quirk
-if ! dpkg -l python-is-python3 > /dev/null; then
+if ! dpkg -s python-is-python3 > /dev/null; then
     sudo apt install python-is-python3
 fi
 
-if ! dpkg -l python3-pip > /dev/null; then
+if ! dpkg -s python3-pip > /dev/null; then
     sudo apt install python3-pip
+fi
+
+if ! dpkg -s python3-venv > /dev/null; then
+    sudo apt install python3-venv
 fi
 
 if ! pip list | grep pipx > /dev/null; then
