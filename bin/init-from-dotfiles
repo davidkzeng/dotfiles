@@ -9,12 +9,12 @@ function usage() {
 }
 
 install=0
-force_link=0
+force_link=""
 config="default"
 while (( "$#" )); do
     case $1 in
         -i | --install) install=1 ;;
-        -f | --force-link) force_link=1 ;;
+        -f | --force-link) force_link="--force-link" ;;
         -c | --config) shift; config="$1" ;;
         -h | --help) usage; exit ;;
         *) usage; exit 1 ;;

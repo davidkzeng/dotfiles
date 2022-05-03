@@ -1,5 +1,5 @@
 local function map(mode, shortcut, command, config)
-    vim.api.nvim_set_keymap(mode, shortcut, command, config)
+    vim.keymap.set(mode, shortcut, command, config)
 end
 
 local function nnoremap(shortcut, command)
@@ -15,7 +15,6 @@ nnoremap('D', '"_dd')
 nnoremap('x', '"_x')
 vnoremap('p', 'pgvy')
 
--- Quickfix
 nnoremap(']q', ':cn<CR>')
 nnoremap('[q', ':cp<CR>')
 nnoremap('<Leader>q', ':ccl<CR>')

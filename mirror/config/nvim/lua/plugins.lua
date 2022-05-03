@@ -9,51 +9,51 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require('packer').startup(function(use)
-    -- packer itself
-    use 'wbthomason/packer.nvim'
+  -- packer itself
+  use 'wbthomason/packer.nvim'
 
-    -- top and bottom bar
-    use 'vim-airline/vim-airline'
-    use 'vim-airline/vim-airline-themes'
+  -- top and bottom bar
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
 
-    -- indentation
-    use 'yggdroot/indentline'
-    use 'roryokane/detectindent'
+  -- indentation
+  use 'yggdroot/indentline'
+  use 'roryokane/detectindent'
 
-    -- vcs
-    use 'mhinz/vim-signify'
-    use 'tpope/vim-fugitive'
+  -- vcs
+  use 'mhinz/vim-signify'
+  use 'tpope/vim-fugitive'
 
-    -- sessions
-    use 'xolox/vim-session'
-    use 'xolox/vim-misc'
+  -- sessions
+  use 'xolox/vim-session'
+  use 'xolox/vim-misc'
 
-    -- print # of matches in search
-    use 'henrik/vim-indexed-search'
+  -- print # of matches in search
+  use 'henrik/vim-indexed-search'
 
-    -- better <C-x>
-    use 'moll/vim-bbye'
+  -- better <C-x>
+  use 'moll/vim-bbye'
 
-    -- navigation
-    use 'preservim/nerdtree'
-    use 'junegunn/fzf'
-    use 'jremmen/vim-ripgrep'
+  -- navigation
+  use 'preservim/nerdtree'
+  use 'junegunn/fzf'
+  use 'jremmen/vim-ripgrep'
 
-    -- lsp
-    use 'neovim/nvim-lspconfig'
+  -- lsp
+  use 'neovim/nvim-lspconfig'
 
-    -- snippets
-    use 'sirver/ultisnips'
+  -- snippets
+  use 'sirver/ultisnips'
 
-    -- language specific
-    use 'rust-lang/rust.vim'
-    use 'lervag/vimtex'
+  -- language specific
+  use 'rust-lang/rust.vim'
+  use 'lervag/vimtex'
 
-    -- color scheme
-    use 'tomasr/molokai'
+  -- color scheme
+  use 'tomasr/molokai'
 
-    -- highlighting
-    use 'nvim-treesitter/nvim-treesitter'
+  -- highlighting
+  use 'nvim-treesitter/nvim-treesitter'
 
   -- Automatically set up your configuration after cloning packer.nvim
   if Packer_bootstrap then
