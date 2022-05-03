@@ -1,15 +1,18 @@
 #!/bin/bash
 
+set -eu -o pipefail
+
 echo ">>> Started link_files.sh"
 
-if [[ "$#" != "2" ]]; then
+if [[ "$#" -ne 1 ]]; then
+    echo "./init [--install | -i] [--force-link | -f] [--config | -c]"
     exit 1
 fi
 
-dotfiles_dir=$1
-force_link=$2
-home_mirror="${dotfiles_dir}/mirror"
+force_link=$1
 
+dotfiles_dir="$(dirname "$(dirname "$(realpath "$0")")")"
+home_mirror="${dotfiles_dir}/mirror"
 
 function safe_link() {
     target=$1

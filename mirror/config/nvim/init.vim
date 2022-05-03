@@ -1,4 +1,4 @@
-" vim 8.0+, nvim 0.4+
+" nvim 0.7+
 
 " Respect XDG_DATA_HOME environment variable
 if has('nvim')
@@ -165,6 +165,9 @@ call plug#begin(datahome . '/plugged')
 
     " color scheme
     Plug 'tomasr/molokai'
+
+    " highlighting
+    Plug 'nvim-treesitter/nvim-treesitter'
 call plug#end()
 
 " Plugin Settings

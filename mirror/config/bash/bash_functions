@@ -27,11 +27,11 @@ function date_epoch() {
 }
 
 function pcsv() {
-    column -t -s, -n "$@" | less -S
+    column -t -s, "$@" | less -S
 }
 
 function vcsv() {
-    column -t -s, -n "$@" | \
+    column -t -s, "$@" | \
     vim - -R -u NONE -N +'map <right> 30zl
                         map <left> 30zh
                         map <C-d> 30jzz

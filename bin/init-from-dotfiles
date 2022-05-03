@@ -5,7 +5,7 @@
 set -eu -o pipefail
 
 function usage() {
-    echo "./init [--install | -i] [--force-link | -f] [--config | -c]"
+    echo "Usage: ./init [--install | -i] [--force-link | -f] [--config | -c]"
 }
 
 install=0
@@ -24,12 +24,11 @@ done
 
 bin_dir="$(dirname "$(realpath "$0")")"
 dotfiles_dir="$(dirname "$bin_dir")"
-sh_dir="$dotfiles_dir/sh"
 
-. "${sh_dir}/config/${config}.sh"
+. "${bin_dir}/config/${config}.sh"
 
 # Create symlinks for dotfiles
-"$sh_dir"/link_files.sh "$dotfiles_dir" "$force_link"
+"${bin_dir}/link-files" "$force_link"
 
 if [[ $install -eq 1 ]]; then
     # nix install
@@ -50,7 +49,7 @@ if [[ $install -eq 1 ]]; then
     . ~/.config/bash/bash_common
 
     # install python packages
-    "$sh_dir"/init_python.sh
+    "${bin_dir}/init-python"
 
     # install tmux
     if [[ ! -d "$XDG_DATA_HOME/tmux/tpm" ]]; then
