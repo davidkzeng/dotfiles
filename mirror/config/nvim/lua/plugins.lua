@@ -42,11 +42,15 @@ require('packer').startup(function(use)
   -- lsp
   use 'neovim/nvim-lspconfig'
 
+  -- completion
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+
   -- snippets
   use 'sirver/ultisnips'
 
   -- language specific
-  use 'rust-lang/rust.vim'
   use 'lervag/vimtex'
 
   -- color scheme
@@ -113,6 +117,16 @@ vim.g.UltiSnipsExpandTrigger = '<C-s>'
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_syntax_conceal_disable = 1
 vim.g.vimtex_compiler_latexmk = { build_dir = 'build' }
+
+-- nvim-treesitter settings
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {"python", "rust", "lua"},
+  sync_install = false,
+
+  highlight = {
+    enable = true,
+  }
+}
 
 -- molokai settings
 vim.g.molokai_original = 1
