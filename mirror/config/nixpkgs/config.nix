@@ -28,6 +28,7 @@
                 sqlite
                 gnumake
                 linuxPackages.perf
+                sumneko-lua-language-server
 
                 # personal apps
                 pandoc
@@ -35,7 +36,7 @@
                 htop
                 screenfetch
             ];
-            pathsToLink = [ "/share/man" "/share/doc" "/bin" ];
+            pathsToLink = [ "/share" "/bin" ];
             extraOutputsToInstall = [ "man" "doc" ];
         };
 
