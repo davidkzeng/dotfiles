@@ -29,6 +29,7 @@
                 gnumake
                 linuxPackages.perf
                 sumneko-lua-language-server
+                patchelf
 
                 # personal apps
                 pandoc

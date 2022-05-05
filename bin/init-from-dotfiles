@@ -28,7 +28,7 @@ dotfiles_dir="$(dirname "$bin_dir")"
 . "${bin_dir}/config/${config}.sh"
 
 # Create symlinks for dotfiles
-"${bin_dir}/link-files" "$force_link"
+"${bin_dir}/link-files" $force_link
 
 if [[ $install -eq 1 ]]; then
     # nix install

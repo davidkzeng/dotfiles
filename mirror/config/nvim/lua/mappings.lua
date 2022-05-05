@@ -32,12 +32,13 @@ mappings.vnoremap('p', 'pgvy')
 
 mappings.nnoremap(']q', ':cn<CR>')
 mappings.nnoremap('[q', ':cp<CR>')
-mappings.nnoremap('<Leader>q', ':ccl<CR>')
+mappings.nnoremap('<leader>q', ':ccl<CR>')
 
 -- Buffer
 mappings.nnoremap(']b', ':bn<CR>')
 mappings.nnoremap('[b', ':bp<CR>')
 
-mappings.nnoremap('<Leader>i', ':set invlist<cr>')
+mappings.nnoremap('<C-n>', ':noh<CR>')
+mappings.nnoremap('<leader>i', ':set invlist<cr>')
 
 return mappings
