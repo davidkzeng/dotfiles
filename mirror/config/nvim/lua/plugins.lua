@@ -49,6 +49,7 @@ require('packer').startup(function(use)
 
   -- snippets
   use 'sirver/ultisnips'
+  use 'quangnguyen30192/cmp-nvim-ultisnips'
 
   -- language specific
   use 'lervag/vimtex'

@@ -10,18 +10,9 @@
 
 # user specific paths
 PATH="$HOME/.local/bin:$PATH"
+if [[ -d "$HOME/.npm-packages/bin" ]]; then PATH="$HOME/.npm-packages/bin:$PATH"; fi
+if [[ -d "$HOME/.cargo" ]]; then . "$HOME/.cargo/env"; fi
 
-# added by cargo (rust)
-if [[ -d "$HOME/.cargo" ]]; then
-    . "$HOME/.cargo/env"
-fi
-
-NPM_CONFIG_PREFIX="$HOME/.npm-packages"
-if [[ -d "$NPM_CONFIG_PREFIX/bin" ]]; then
-    PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
-fi
-
-export NPM_CONFIG_PREFIX=$NPM_CONFIG_PREFIX
 export PATH=$PATH
 
 if [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi

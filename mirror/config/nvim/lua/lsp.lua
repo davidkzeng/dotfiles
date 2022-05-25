@@ -43,6 +43,7 @@ cmp.setup {
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'ultisnips' },
     {
       name = 'buffer',
       option = {
@@ -95,7 +96,9 @@ local servers = {
     cmd = {'rust-analyzer'},
     settings = {
       ["rust-analyzer"] = {
-        diagnostics = { disabled = {"unresolved-proc-macro"} }
+        procMacro = {
+          enable = true
+        }
       }
     }
   },
