@@ -70,5 +70,6 @@ function vfza() {
 }
 
 function replace() {
+    rg --files-with-matches ${1} ${3} | xargs -I {} sed --quiet "s/${1}/${2}/g" {}
     rg --files-with-matches ${1} ${3} | xargs -I {} sed -r -i "s/${1}/${2}/g" {}
 }

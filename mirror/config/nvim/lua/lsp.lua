@@ -22,24 +22,30 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = function(fallback)
-      if not cmp.select_next_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
+    ['<Tab>'] = cmp.mapping(
+      function(fallback)
+        if not cmp.select_next_item() then
+          if vim.bo.buftype ~= 'prompt' and has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
         end
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if not cmp.select_prev_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
+      end,
+      { 'i' } -- insert mode only
+    ),
+    ['<S-Tab>'] = cmp.mapping(
+      function(fallback)
+        if not cmp.select_prev_item() then
+          if vim.bo.buftype ~= 'prompt' and has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
         end
-      end
-    end,
+      end,
+      { 'i' }
+    ),
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -59,7 +65,6 @@ cmp.setup {
   }, {
   }),
 }
-
 
 m.nnoremap('[g', vim.diagnostic.goto_prev)
 m.nnoremap(']g', vim.diagnostic.goto_next)
@@ -95,10 +100,10 @@ local servers = {
   rust_analyzer = {
     cmd = {'rust-analyzer'},
     settings = {
-      ["rust-analyzer"] = {
+      ['rust-analyzer'] = {
         procMacro = {
           enable = true
-        }
+        },
       }
     }
   },

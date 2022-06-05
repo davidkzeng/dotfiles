@@ -35,7 +35,12 @@ require('packer').startup(function(use)
   use 'moll/vim-bbye'
 
   -- navigation
-  use 'preservim/nerdtree'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons'
+    }
+  }
   use 'junegunn/fzf'
   use 'jremmen/vim-ripgrep'
 
@@ -97,9 +102,9 @@ vim.g.session_directory = datahome .. '/sessions'
 -- vim-bbye settings
 nnoremap('<C-x>', ':Bdelete<CR>')
 
--- nerdtree settings
-nnoremap('<leader>t', ':NERDTreeToggle<CR>')
-vim.g.NERDTreeMinimalUI = 1 -- disable help text
+-- nvim-tree settings
+nnoremap('<leader>t', ':NvimTreeToggle<CR>')
+require('nvim-tree').setup {}
 
 -- fzf settings
 vim.api.nvim_create_user_command('FZ',
