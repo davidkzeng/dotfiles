@@ -16,7 +16,6 @@
                 direnv
                 fzf
                 ripgrep
-                shellcheck
                 cloc
 
                 # data manipulation
@@ -29,6 +28,7 @@
                 gnumake
                 linuxPackages.perf
                 sumneko-lua-language-server
+                shellcheck
                 patchelf
 
                 # personal apps

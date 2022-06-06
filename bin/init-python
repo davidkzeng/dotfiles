@@ -24,6 +24,6 @@ if ! pipx list | grep poetry > /dev/null; then
     pipx install poetry
 fi
 
-if ! pipx list | grep python-language-server > /dev/null; then
-    pipx install python-language-server
+if ! pipx list | grep python-lsp-server > /dev/null; then
+    pipx install python-lsp-server
 fi
