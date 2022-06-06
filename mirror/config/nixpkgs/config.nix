@@ -28,7 +28,6 @@
                 gnumake
                 linuxPackages.perf
                 sumneko-lua-language-server
-                shellcheck
                 patchelf
 
                 # personal apps
