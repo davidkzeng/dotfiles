@@ -1,6 +1,6 @@
 PATH="$HOME/.local/bin:$PATH"
+
 if [[ -d "$HOME/.npm-packages/bin" ]]; then PATH="$HOME/.npm-packages/bin:$PATH"; fi
-if [[ -d "$HOME/.avm/bin" ]]; then PATH="/home/davidz/.avm/bin:$PATH"; fi
 
 export PATH=$PATH
 
