@@ -103,6 +103,7 @@ vim.g.session_directory = datahome .. '/sessions'
 nnoremap('<C-x>', ':Bdelete<CR>')
 
 -- nvim-tree settings
+-- Need to install NerdFonts for WSL
 nnoremap('<leader>t', ':NvimTreeToggle<CR>')
 require('nvim-tree').setup {}
 

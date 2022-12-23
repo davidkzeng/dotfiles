@@ -27,6 +27,10 @@ dotfiles_dir="$(dirname "$bin_dir")"
 
 . "${bin_dir}/config/${config}.sh"
 
+if [[ -z "$(ls -A $dotfiles_dir/custom/research-tools)" ]]; then
+    cd "$dotfiles_dir" && git submodule update --init
+fi
+
 # Create symlinks for dotfiles
 "${bin_dir}/link-files" $force_link
 
@@ -54,9 +58,5 @@ if [[ $install -eq 1 ]]; then
     # install tmux
     if [[ ! -d "$XDG_DATA_HOME/tmux/tpm" ]]; then
         git clone https://github.com/tmux-plugins/tpm "$XDG_DATA_HOME/tmux/tpm"
-    fi
-
-    if [[ -z "$(ls -A $dotfiles_dir/custom/research-tools)" ]]; then
-        cd "$dotfiles_dir" && git submodule update --init
     fi
 fi
