@@ -40,8 +40,8 @@
             extraOutputsToInstall = [ "man" "doc" ];
         };
 
-        extraPackages = buildEnv {
-            name = "extra-packages";
+        myExtraPackages = pkgs.buildEnv {
+            name = "my-extra-packages";
             paths = [
                 (texlive.combine {
                     inherit (texlive) scheme-medium enumitem;

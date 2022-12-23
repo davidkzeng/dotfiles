@@ -41,7 +41,7 @@ if [[ $install -eq 1 ]]; then
     # nix packages install
     nix-env --install -A nixpkgs.myPackages
     if [[ "${FULL_INSTALL}" -eq 1 ]]; then
-        nix-env --install -A nixpkgs.extraPackages
+        nix-env --install -A nixpkgs.myExtraPackages
     fi
 
     # setup PATH, other environment variables
