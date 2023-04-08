@@ -115,6 +115,9 @@ local servers = {
         }
       }
     }
+  },
+  clangd = {
+    cmd = {'clangd'}
   }
 }
 
