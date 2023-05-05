@@ -89,10 +89,8 @@ local servers = {
     cmd = {'pylsp', '-vv', '--log-file', '/tmp/lsp_python.log'},
     settings = {
       pylsp = {
-        configurationSources = {'flake8'},
         plugins = {
-          pyflakes = { enabled = true },
-          pycodestyle = { enabled = true },
+          ruff = { enabled = true },
         },
       }
     }
