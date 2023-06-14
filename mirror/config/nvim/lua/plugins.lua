@@ -82,13 +82,13 @@ vim.g.indentLine_conceallevel = 1
 vim.g.indentLine_fileTypeExclude = {'markdown', 'json'}
 
 -- detectindent settings
-local function ignorabledetectindent()
+local function ignorable_detect_indent()
   if vim.fn.index({'markdown', 'rust', 'python', 'html'}, vim.bo.filetype) == -1 then
     vim.cmd('DetectIndent')
   end
 end
 vim.api.nvim_create_autocmd({'BufReadPost'}, {
-  callback = ignorabledetectindent,
+  callback = ignorable_detect_indent,
 })
 
 -- vim-signify settings
@@ -108,11 +108,43 @@ nnoremap('<leader>t', ':NvimTreeToggle<CR>')
 require('nvim-tree').setup {}
 
 -- fzf settings
+
+local function get_bufs_loaded()
+    local bufs_loaded = {}
+    local idx = 1
+    for _, buf_hndl in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf_hndl) then
+            local buf_name = vim.api.nvim_buf_get_name(buf_hndl)
+
+            if buf_name ~= '' then
+              bufs_loaded[idx] = buf_name
+              idx = idx + 1
+            end
+        end
+    end
+
+    return bufs_loaded
+end
+
+local function rg_files()
+  vim.fn['fzf#run'](vim.fn['fzf#wrap']({source = 'rg --files', sink = 'e'}))
+end
+
+local function rg_buffers()
+  vim.fn['fzf#run'](vim.fn['fzf#wrap']({source = get_bufs_loaded(), sink = 'e'}))
+end
+
 vim.api.nvim_create_user_command('FZ',
-  'call fzf#run(fzf#wrap({"source": "rg --files"}))',
+  rg_files,
   {}
 )
+vim.api.nvim_create_user_command('FZB',
+  rg_buffers,
+  {}
+)
+
 nnoremap(',f', ':FZ<CR>')
+nnoremap(',b', ':FZB<CR>')
 
 vim.g.fzf_colors = {
   fg = {'fg', 'Normal'},
