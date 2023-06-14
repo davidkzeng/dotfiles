@@ -25,25 +25,35 @@ function mappings.vnoremap(shortcut, command, extra_config)
   mappings.map('v', shortcut, command, merge({ noremap = true }, extra_config))
 end
 
+local nnoremap = mappings.nnoremap
+local vnoremap = mappings.vnoremap
+
 -- avoid overwriting buffer
-mappings.nnoremap('D', '"_dd')
-mappings.nnoremap('x', '"_x')
-mappings.vnoremap('p', 'pgvy')
+nnoremap('D', '"_dd')
+nnoremap('x', '"_x')
+vnoremap('p', 'pgvy')
 
-mappings.nnoremap('H', '^')
-mappings.nnoremap('J', 'gg')
-mappings.nnoremap('K', 'G')
-mappings.nnoremap('L', '$')
+-- fast navigation
+nnoremap('H', '^')
+nnoremap('J', 'gg')
+nnoremap('K', 'G')
+nnoremap('L', '$')
 
-mappings.nnoremap(']q', ':cn<CR>')
-mappings.nnoremap('[q', ':cp<CR>')
-mappings.nnoremap('<leader>q', ':ccl<CR>')
+-- quickfix
+nnoremap(']q', ':cnext<CR>')
+nnoremap('[q', ':cprev<CR>')
+nnoremap('<leader>qq', ':cclose<CR>')
 
--- Buffer
-mappings.nnoremap(']b', ':bn<CR>')
-mappings.nnoremap('[b', ':bp<CR>')
+-- loc list
+nnoremap(']l', ':lnext<CR>')
+nnoremap('[l', ':lprev<CR>')
+nnoremap('<leader>lq', ':lclose<CR>')
 
-mappings.nnoremap('<C-n>', ':noh<CR>')
-mappings.nnoremap('<leader>i', ':set invlist<cr>')
+-- buffer
+nnoremap(']b', ':bn<CR>')
+nnoremap('[b', ':bp<CR>')
+
+nnoremap('<leader>sc', ':noh<CR>')
+nnoremap('<leader>i', ':set invlist<CR>')
 
 return mappings

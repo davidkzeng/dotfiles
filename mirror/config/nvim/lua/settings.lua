@@ -2,6 +2,8 @@ MYVIMRC = os.getenv('MYVIMRC')
 
 local datahome = vim.fn.stdpath('data')
 
+vim.g.mapleader = ' '
+
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true

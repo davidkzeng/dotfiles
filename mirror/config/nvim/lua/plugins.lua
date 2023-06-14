@@ -31,7 +31,7 @@ require('packer').startup(function(use)
   -- print # of matches in search
   use 'henrik/vim-indexed-search'
 
-  -- better <C-x>
+  -- better buffer closing
   use 'moll/vim-bbye'
 
   -- navigation
@@ -100,7 +100,7 @@ vim.g.session_autoload = 0
 vim.g.session_directory = datahome .. '/sessions'
 
 -- vim-bbye settings
-nnoremap('<C-x>', ':Bdelete<CR>')
+nnoremap('<leader>bd', ':Bdelete<CR>')
 
 -- nvim-tree settings
 -- Need to install NerdFonts for WSL
@@ -143,8 +143,8 @@ vim.api.nvim_create_user_command('FZB',
   {}
 )
 
-nnoremap(',f', ':FZ<CR>')
-nnoremap(',b', ':FZB<CR>')
+nnoremap('<leader>ff', ':FZ<CR>')
+nnoremap('<leader>fb', ':FZB<CR>')
 
 vim.g.fzf_colors = {
   fg = {'fg', 'Normal'},
@@ -160,7 +160,7 @@ vim.g.fzf_colors = {
 }
 
 -- snippets
-vim.g.UltiSnipsExpandTrigger = '<C-s>'
+vim.g.UltiSnipsExpandTrigger = '<leader>u'
 
 -- vimtex settings
 vim.g.vimtex_view_method = 'zathura'
@@ -169,6 +169,7 @@ vim.g.vimtex_compiler_latexmk = { build_dir = 'build' }
 
 -- nvim-treesitter settings
 -- I had to run some hackery: patchelf python.so --add-rpath /lib/x86_64-linux-gnu/
+-- for nix install
 require('nvim-treesitter.configs').setup {
   ensure_installed = {"python", "rust", "lua"},
   sync_install = false,
