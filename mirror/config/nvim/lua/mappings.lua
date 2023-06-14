@@ -30,6 +30,11 @@ mappings.nnoremap('D', '"_dd')
 mappings.nnoremap('x', '"_x')
 mappings.vnoremap('p', 'pgvy')
 
+mappings.nnoremap('H', '^')
+mappings.nnoremap('J', 'gg')
+mappings.nnoremap('K', 'G')
+mappings.nnoremap('L', '$')
+
 mappings.nnoremap(']q', ':cn<CR>')
 mappings.nnoremap('[q', ':cp<CR>')
 mappings.nnoremap('<leader>q', ':ccl<CR>')

@@ -1,4 +1,3 @@
-HOME = os.getenv('HOME')
 MYVIMRC = os.getenv('MYVIMRC')
 
 local datahome = vim.fn.stdpath('data')

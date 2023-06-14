@@ -112,10 +112,20 @@ vim.api.nvim_create_user_command('FZ',
   'call fzf#run(fzf#wrap({"source": "rg --files"}))',
   {}
 )
-vim.api.nvim_create_user_command('FZA',
-  'call fzf#run(fzf#wrap({}))',
-  {}
-)
+nnoremap(',f', ':FZ<CR>')
+
+vim.g.fzf_colors = {
+  fg = {'fg', 'Normal'},
+  bg = {'bg', 'Normal'},
+  hl = {'fg', 'Comment'},
+  info = {'fg', 'PreProc'},
+  border = {'fg', 'Ignore'},
+  prompt = {'fg', 'Conditional'},
+  pointer = {'fg', 'Exception'},
+  marker = {'fg', 'Keyword'},
+  spinner = {'fg', 'Label'},
+  header = {'fg', 'Comment'}
+}
 
 -- snippets
 vim.g.UltiSnipsExpandTrigger = '<C-s>'
