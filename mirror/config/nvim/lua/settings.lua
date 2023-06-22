@@ -1,20 +1,12 @@
-MYVIMRC = os.getenv('MYVIMRC')
-
-local datahome = vim.fn.stdpath('data')
-
 vim.g.mapleader = ' '
 
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
 
-vim.o.backspace = 'indent,eol,start'
-
 -- silence bells
 vim.o.visualbell = false
 vim.o.t_vb = ''
-
-vim.o.mouse = 'a'
 
 -- indentation
 vim.o.tabstop = 4
@@ -22,8 +14,6 @@ vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.shiftround = true
 vim.o.expandtab = true
-vim.o.smarttab = true
-vim.o.autoindent = true
 
 local function settwospaceindent()
   vim.bo.tabstop = 2
@@ -36,31 +26,15 @@ vim.api.nvim_create_autocmd({'BufEnter'}, {
 })
 
 -- search
-vim.o.hlsearch = true
-vim.o.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- cmd line completion
-vim.o.wildmenu = true
 vim.o.wildignorecase = true
 vim.o.wildmode = 'full'
 
 vim.o.colorcolumn = '120'
 vim.o.signcolumn = 'yes' -- permanent gutter column
-
-vim.o.undodir = datahome .. '/undo/'
-vim.o.directory = datahome .. '/swap/'
-vim.o.backupdir = datahome .. '/backup/'
-
-local function ensure_directory(dir)
-  if not vim.fn.isdirectory(dir) then
-    vim.fn.mkdir(dir, 'p', '0700')
-  end
-end
-ensure_directory(vim.o.undodir)
-ensure_directory(vim.o.directory)
-ensure_directory(vim.o.backupdir)
 
 vim.o.undofile = true
 vim.o.undolevels = 1000
@@ -75,16 +49,22 @@ vim.o.updatetime = 1000
 
 vim.api.nvim_create_user_command(
   'TrimWhitespace',
----@diagnostic disable-next-line: unused-local
-  function(input)
+  function(_)
     local view = vim.fn.winsaveview()
     vim.cmd('keeppatterns %s/\\s\\+$//e')
     vim.fn.winrestview(view)
   end,
   {}
 )
+
+MYVIMRC = os.getenv('MYVIMRC')
 vim.api.nvim_create_user_command(
   'OpenVimConfig',
   ':e ' .. MYVIMRC,
+  {}
+)
+vim.api.nvim_create_user_command(
+  'Source',
+  ':source ' .. MYVIMRC,
   {}
 )

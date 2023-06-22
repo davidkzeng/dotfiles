@@ -28,9 +28,6 @@ require('packer').startup(function(use)
   use 'xolox/vim-session'
   use 'xolox/vim-misc'
 
-  -- print # of matches in search
-  use 'henrik/vim-indexed-search'
-
   -- better buffer closing
   use 'moll/vim-bbye'
 
@@ -100,7 +97,7 @@ vim.g.session_autoload = 0
 vim.g.session_directory = datahome .. '/sessions'
 
 -- vim-bbye settings
-nnoremap('<leader>bd', ':Bdelete<CR>')
+nnoremap('<leader>qb', ':Bdelete<CR>')
 
 -- nvim-tree settings
 -- Need to install NerdFonts for WSL
@@ -147,20 +144,11 @@ nnoremap('<leader>ff', ':FZ<CR>')
 nnoremap('<leader>fb', ':FZB<CR>')
 
 vim.g.fzf_colors = {
-  fg = {'fg', 'Normal'},
-  bg = {'bg', 'Normal'},
-  hl = {'fg', 'Comment'},
-  info = {'fg', 'PreProc'},
-  border = {'fg', 'Ignore'},
   prompt = {'fg', 'Conditional'},
-  pointer = {'fg', 'Exception'},
-  marker = {'fg', 'Keyword'},
-  spinner = {'fg', 'Label'},
-  header = {'fg', 'Comment'}
 }
 
 -- snippets
-vim.g.UltiSnipsExpandTrigger = '<leader>u'
+vim.g.UltiSnipsExpandTrigger = '<C-s>'
 
 -- vimtex settings
 vim.g.vimtex_view_method = 'zathura'

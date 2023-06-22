@@ -9,10 +9,6 @@ function list-apt-repos() {
     (echo /etc/apt/sources.list && find /etc/apt/sources.list.d/ -regex '.*list') | xargs egrep -v '^#|^ *$'
 }
 
-function millis() {
-    date +%s%N | cut -b1-13
-}
-
 function date_epoch() {
     # Good until Mar. 2255
     limit=9000000000
@@ -20,27 +16,16 @@ function date_epoch() {
     if (( $ts < $limit )); then
         date -d @${ts} --utc +"%Y/%m/%d %T %Z"
     elif (( $ts < $limit * 1000 )); then
-        date -d @$(($ts / 1000)).$(($ts % 1000)) --utc +"%Y/%m/%d %T.%3N %Z"
+        printf -v millis "%03d" $((ts % 1000))
+        date -d @$(($ts / 1000)).$millis --utc +"%Y/%m/%d %T.%3N %Z"
     else
-        date -d @$(($ts / 1000000)).$(($ts % 1000000)) --utc +"%Y/%m/%d %T.%6N %Z"
+        printf -v micros "%06d" $((ts % 1000000))
+        date -d @$(($ts / 1000000)).micros --utc +"%Y/%m/%d %T.%6N %Z"
     fi
 }
 
 function pcsv() {
     column -t -s, "$@" | less -S
-}
-
-function vcsv() {
-    column -t -s, "$@" | \
-    vim - -R -u NONE -N +'map <right> 30zl
-                        map <left> 30zh
-                        map <C-d> 30jzz
-                        map <C-u> 30kzz
-                        map q :qa<CR>
-                        set number scrollopt=hor scrollbind nowrap cursorline
-                        1sp
-                        winc w
-                        '
 }
 
 function fz() {
@@ -53,23 +38,11 @@ function fz() {
     fi
 }
 
-function lfz() {
-    fz less --ignore
-}
-
 function vfz() {
     fz $VIM_BIN --ignore
 }
 
-function lfza() {
-    fz less
-}
-
-function vfza() {
-    fz $VIM_BIN
-}
-
 function replace() {
-    rg --files-with-matches ${1} ${3} | xargs -I {} sed --quiet "s/${1}/${2}/g" {}
-    rg --files-with-matches ${1} ${3} | xargs -I {} sed -r -i "s/${1}/${2}/g" {}
+    rg --files-with-matches "${1}" ${3} | xargs -I {} sed --quiet "s/${1}/${2}/g" {}
+    rg --files-with-matches "${1}" ${3} | xargs -I {} sed -r -i "s/${1}/${2}/g" {}
 }

@@ -47,3 +47,7 @@ bindkey  "^[OF"   end-of-line       # end
 if has_cmd direnv; then
   eval "$(direnv hook zsh)"
 fi
+
+if [[ -e "${HOME}/.nix-profile/share/fzf" ]]; then
+  source "${HOME}/.nix-profile/share/fzf/key-bindings.zsh"
+fi

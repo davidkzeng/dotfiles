@@ -47,13 +47,13 @@ nnoremap('<leader>qq', ':cclose<CR>')
 -- loc list
 nnoremap(']l', ':lnext<CR>')
 nnoremap('[l', ':lprev<CR>')
-nnoremap('<leader>lq', ':lclose<CR>')
+nnoremap('<leader>ql;', ':lclose<CR>')
 
 -- buffer
 nnoremap(']b', ':bn<CR>')
 nnoremap('[b', ':bp<CR>')
 
-nnoremap('<leader>sc', ':noh<CR>')
+nnoremap('<leader>c', ':noh<CR>')
 nnoremap('<leader>i', ':set invlist<CR>')
 
 return mappings

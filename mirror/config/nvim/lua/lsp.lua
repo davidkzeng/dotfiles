@@ -66,9 +66,9 @@ cmp.setup {
   }),
 }
 
-m.nnoremap('[g', vim.diagnostic.goto_prev)
-m.nnoremap(']g', vim.diagnostic.goto_next)
-m.nnoremap('<leader>gd', vim.diagnostic.setqflist)
+m.nnoremap('[d', vim.diagnostic.goto_prev)
+m.nnoremap(']d', vim.diagnostic.goto_next)
+m.nnoremap('<leader>d', vim.diagnostic.setqflist)
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { update_in_insert = false })
@@ -79,9 +79,9 @@ local function on_attach(_, bufnr)
   m.nbufnoremap('gy', vim.lsp.buf.type_definition, bufnr)
   m.nbufnoremap('gi', vim.lsp.buf.implementation, bufnr)
   m.nbufnoremap('gr', vim.lsp.buf.references, bufnr)
-  m.nbufnoremap('gh', vim.lsp.buf.hover, bufnr)
-  m.nbufnoremap('<leader>gr', vim.lsp.buf.rename, bufnr)
-  m.nbufnoremap('<leader>gf', vim.lsp.buf.code_action, bufnr)
+  m.nbufnoremap('<leader>h', vim.lsp.buf.hover, bufnr)
+  m.nbufnoremap('<leader>r', vim.lsp.buf.rename, bufnr)
+  m.nbufnoremap('<leader>a', vim.lsp.buf.code_action, bufnr)
 end
 
 local servers = {
@@ -105,7 +105,7 @@ local servers = {
       }
     }
   },
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         diagnostics = {
