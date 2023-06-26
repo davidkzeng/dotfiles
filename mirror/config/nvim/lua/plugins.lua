@@ -4,7 +4,7 @@ local nnoremap = require('mappings').nnoremap
 local install_path = datahome .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   Packer_bootstrap = vim.fn.system(
-    {'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path}
+    { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
   )
 end
 
@@ -76,20 +76,20 @@ vim.g.airline_theme = 'molokai'
 
 -- indentline settings
 vim.g.indentLine_conceallevel = 1
-vim.g.indentLine_fileTypeExclude = {'markdown', 'json'}
+vim.g.indentLine_fileTypeExclude = { 'markdown', 'json' }
 
 -- detectindent settings
 local function ignorable_detect_indent()
-  if vim.fn.index({'markdown', 'rust', 'python', 'html'}, vim.bo.filetype) == -1 then
+  if vim.fn.index({ 'markdown', 'rust', 'python', 'html' }, vim.bo.filetype) == -1 then
     vim.cmd('DetectIndent')
   end
 end
-vim.api.nvim_create_autocmd({'BufReadPost'}, {
+vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
   callback = ignorable_detect_indent,
 })
 
 -- vim-signify settings
-vim.g.signify_vcs_list = {'git'}
+vim.g.signify_vcs_list = { 'git' }
 
 -- vim-session settings
 vim.g.session_autosave = 0
@@ -107,28 +107,28 @@ require('nvim-tree').setup {}
 -- fzf settings
 
 local function get_bufs_loaded()
-    local bufs_loaded = {}
-    local idx = 1
-    for _, buf_hndl in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf_hndl) then
-            local buf_name = vim.api.nvim_buf_get_name(buf_hndl)
+  local bufs_loaded = {}
+  local idx = 1
+  for _, buf_hndl in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf_hndl) then
+      local buf_name = vim.api.nvim_buf_get_name(buf_hndl)
 
-            if buf_name ~= '' then
-              bufs_loaded[idx] = buf_name
-              idx = idx + 1
-            end
-        end
+      if buf_name ~= '' then
+        bufs_loaded[idx] = buf_name
+        idx = idx + 1
+      end
     end
+  end
 
-    return bufs_loaded
+  return bufs_loaded
 end
 
 local function rg_files()
-  vim.fn['fzf#run'](vim.fn['fzf#wrap']({source = 'rg --files', sink = 'e'}))
+  vim.fn['fzf#run'](vim.fn['fzf#wrap']({ source = 'rg --files', sink = 'e' }))
 end
 
 local function rg_buffers()
-  vim.fn['fzf#run'](vim.fn['fzf#wrap']({source = get_bufs_loaded(), sink = 'e'}))
+  vim.fn['fzf#run'](vim.fn['fzf#wrap']({ source = get_bufs_loaded(), sink = 'e' }))
 end
 
 vim.api.nvim_create_user_command('FZ',
@@ -144,7 +144,7 @@ nnoremap('<leader>ff', ':FZ<CR>')
 nnoremap('<leader>fb', ':FZB<CR>')
 
 vim.g.fzf_colors = {
-  prompt = {'fg', 'Conditional'},
+  prompt = { 'fg', 'Conditional' },
 }
 
 -- snippets
@@ -159,7 +159,7 @@ vim.g.vimtex_compiler_latexmk = { build_dir = 'build' }
 -- I had to run some hackery: patchelf python.so --add-rpath /lib/x86_64-linux-gnu/
 -- for nix install
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {"python", "rust", "lua"},
+  ensure_installed = { "python", "rust", "lua" },
   sync_install = false,
 
   highlight = {

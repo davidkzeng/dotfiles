@@ -2,7 +2,7 @@ local m = require('mappings')
 
 -- nvim-cmp settings
 local has_words_before = function()
----@diagnostic disable-next-line: deprecated
+  ---@diagnostic disable-next-line: deprecated
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
@@ -71,7 +71,7 @@ m.nnoremap(']d', vim.diagnostic.goto_next)
 m.nnoremap('<leader>d', vim.diagnostic.setqflist)
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { update_in_insert = false })
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { update_in_insert = false })
 
 local lspconfig = require('lspconfig')
 local function on_attach(_, bufnr)
@@ -86,7 +86,7 @@ end
 
 local servers = {
   pylsp = {
-    cmd = {'pylsp', '-vv', '--log-file', '/tmp/lsp_python.log'},
+    cmd = { 'pylsp', '-vv', '--log-file', '/tmp/lsp_python.log' },
     settings = {
       pylsp = {
         plugins = {
@@ -96,7 +96,7 @@ local servers = {
     }
   },
   rust_analyzer = {
-    cmd = {'rust-analyzer'},
+    cmd = { 'rust-analyzer' },
     settings = {
       ['rust-analyzer'] = {
         procMacro = {
@@ -109,20 +109,25 @@ local servers = {
     settings = {
       Lua = {
         diagnostics = {
-          globals = {'vim'}
+          globals = { 'vim' }
         }
       }
     }
   },
   clangd = {
-    cmd = {'clangd'}
+    cmd = { 'clangd' }
   }
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-for server,config in pairs(servers) do
+for server, config in pairs(servers) do
   config.on_attach = on_attach
   config.capabilities = capabilities
   lspconfig[server].setup(config)
 end
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.rs", "*.lua" },
+  callback = function() vim.lsp.buf.format({ async = false }) end
+})

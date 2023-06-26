@@ -20,8 +20,8 @@ local function settwospaceindent()
   vim.bo.shiftwidth = 2
   vim.bo.softtabstop = 2
 end
-vim.api.nvim_create_autocmd({'BufEnter'}, {
-  pattern = {'*.html', '*.lua'},
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  pattern = { '*.html', '*.lua' },
   callback = settwospaceindent,
 })
 
