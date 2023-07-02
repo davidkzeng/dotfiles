@@ -32,6 +32,7 @@ if has_cmd direnv; then
   eval "$(direnv hook bash)"
 fi
 
+# ctrl-r fzf
 if [[ -e "${HOME}/.nix-profile/share/fzf" ]]; then
   source "${HOME}/.nix-profile/share/fzf/key-bindings.bash"
 fi
