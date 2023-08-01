@@ -3,5 +3,6 @@
 	name = David Zeng
 [push]
 	default = simple
+	autoSetupRemote = true
 [credential]
 	helper = cache --timeout=3600
