@@ -6,8 +6,6 @@ if has_cmd dircolors; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
 fi
 
 if has_cmd zsh; then
@@ -15,9 +13,9 @@ if has_cmd zsh; then
 fi
 
 if has_cmd git; then
-    alias g='git'
     alias ga='git add -A'
     alias gc='git commit'
     alias gl='git log'
     alias gs='git status'
+    alias gp='git push'
 fi
