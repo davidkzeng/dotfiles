@@ -16,7 +16,7 @@ fi
 
 if has_cmd git; then
     alias g='git'
-    alias ga='git add'
+    alias ga='git add -A'
     alias gc='git commit'
     alias gl='git log'
     alias gs='git status'
