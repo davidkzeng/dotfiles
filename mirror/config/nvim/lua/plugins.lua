@@ -156,9 +156,6 @@ vim.g.vimtex_syntax_conceal_disable = 1
 vim.g.vimtex_compiler_latexmk = { build_dir = 'build' }
 
 -- nvim-treesitter settings
--- I had to run some hackery: patchelf python.so --add-rpath /lib/x86_64-linux-gnu/
--- for nix install
--- ~/.local/share/nvim/site/pack/packer/start/nvim-treesitter/parser
 require('nvim-treesitter.configs').setup {
   ensure_installed = { "python", "rust", "lua" },
   sync_install = false,
