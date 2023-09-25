@@ -20,7 +20,7 @@ function date_epoch() {
         date -d @$(($ts / 1000)).$millis --utc +"%Y/%m/%d %T.%3N %Z"
     else
         printf -v micros "%06d" $((ts % 1000000))
-        date -d @$(($ts / 1000000)).micros --utc +"%Y/%m/%d %T.%6N %Z"
+        date -d @$(($ts / 1000000)).$micros --utc +"%Y/%m/%d %T.%6N %Z"
     fi
 }
 

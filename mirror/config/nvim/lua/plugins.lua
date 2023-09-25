@@ -146,6 +146,7 @@ nnoremap('<leader>fb', ':FZB<CR>')
 vim.g.fzf_colors = {
   prompt = { 'fg', 'Conditional' },
 }
+vim.g.fzf_layout = { window = { width = 0.9, height = 0.6, relative = true, yoffset = 1.0 } }
 
 -- snippets
 vim.g.UltiSnipsExpandTrigger = '<C-s>'

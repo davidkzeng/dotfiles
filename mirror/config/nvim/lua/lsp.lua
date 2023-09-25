@@ -74,6 +74,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { update_in_insert = false })
 
 local lspconfig = require('lspconfig')
+
+-- on_attach avoids overriding default gd when there is no lsp
 local function on_attach(_, bufnr)
   m.nbufnoremap('gd', vim.lsp.buf.definition, bufnr)
   m.nbufnoremap('gy', vim.lsp.buf.type_definition, bufnr)
@@ -82,6 +84,7 @@ local function on_attach(_, bufnr)
   m.nbufnoremap('<leader>h', vim.lsp.buf.hover, bufnr)
   m.nbufnoremap('<leader>r', vim.lsp.buf.rename, bufnr)
   m.nbufnoremap('<leader>a', vim.lsp.buf.code_action, bufnr)
+  m.nbufnoremap('<leader>f', function() vim.lsp.buf.format { async = false } end, bufnr)
 end
 
 local servers = {
@@ -90,13 +93,13 @@ local servers = {
     settings = {
       pylsp = {
         plugins = {
-          ruff = { enabled = true },
+          ruff = { enabled = true, format = { 'E', 'W', 'F' } },
         },
       }
     }
   },
   rust_analyzer = {
-    cmd = { 'rust-analyzer' },
+    cmd = { 'rust-analyzer', '--log-file', '/tmp/lsp_rust.log' },
     settings = {
       ['rust-analyzer'] = {
         procMacro = {
@@ -128,6 +131,6 @@ for server, config in pairs(servers) do
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*.rs", "*.lua" },
+  pattern = { "*.rs", "*.lua", "*.py" },
   callback = function() vim.lsp.buf.format({ async = false }) end
 })
