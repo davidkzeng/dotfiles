@@ -9,7 +9,7 @@ function usage() {
 force_link=""
 while (( "$#" )); do
     case $1 in
-        -f | --force-link) force_link="--force-link" ;;
+        -f | --force-link) force_link=1 ;;
         *) usage; exit 1 ;;
     esac
     shift

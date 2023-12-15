@@ -25,6 +25,11 @@ function mappings.vnoremap(shortcut, command, extra_config)
   mappings.map('v', shortcut, command, merge({ noremap = true }, extra_config))
 end
 
+function mappings.inoremap(shortcut, command, extra_config)
+  extra_config = extra_config or {}
+  mappings.map('i', shortcut, command, merge({ noremap = true }, extra_config))
+end
+
 local nnoremap = mappings.nnoremap
 local vnoremap = mappings.vnoremap
 

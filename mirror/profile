@@ -9,3 +9,9 @@ if [[ -d "$HOME/.cargo" ]]; then . "$HOME/.cargo/env"; fi
 if [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi
 
 if [[ -e "$HOME/.profile_local" ]]; then . "$HOME/.profile_local"; fi
+
+if [[ -e "$HOME/.config/nvm" ]]; then
+    export NVM_DIR="$HOME/.config/nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+fi
