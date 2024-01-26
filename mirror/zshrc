@@ -10,7 +10,9 @@ alias szrc="source ~/.zshrc"
 # Use with $fg[green] or %{$fg[green]%}
 autoload -Uz colors && colors
 
+# history
 HISTFILE="$XDG_DATA_HOME/zsh/history"
+SAVEHIST=1000
 setopt appendhistory
 setopt incappendhistory # Immediate append instead of on terminal exit
 setopt histignorealldups
