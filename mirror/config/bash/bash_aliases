@@ -13,10 +13,10 @@ if has_cmd zsh; then
 fi
 
 if has_cmd git; then
-    alias ga='git add -A'
-    alias gc='git commit'
-    alias gcd='git add -A && git commit -m "auto"'
     alias gl='git log'
     alias gs='git status'
+    alias ga='git add -A'
+    alias gc='git commit'
     alias gp='git push'
+    alias gacp='git add -A && git commit -m "auto" && git push'
 fi
