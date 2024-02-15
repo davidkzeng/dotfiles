@@ -37,11 +37,6 @@ if [[ -f "$BASH_CONFIG_HOME/bash_functions" ]]; then
     . "$BASH_CONFIG_HOME/bash_functions"
 fi
 
-# Aliases can depend on functions
-if [[ -f "$BASH_CONFIG_HOME/bash_aliases" ]]; then
-    . "$BASH_CONFIG_HOME/bash_aliases"
-fi
-
 # Miscellaneous aliases, functions, etc. not worth preserving or generalizing beyond the current system
 if [[ -f "$BASH_CONFIG_HOME/bash_local" ]]; then
     . "$BASH_CONFIG_HOME/bash_local"
