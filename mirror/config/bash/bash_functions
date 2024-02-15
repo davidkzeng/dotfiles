@@ -46,3 +46,28 @@ function replace() {
     rg --files-with-matches "${1}" ${3} | xargs -I {} sed --quiet "s/${1}/${2}/g" {}
     rg --files-with-matches "${1}" ${3} | xargs -I {} sed -r -i "s/${1}/${2}/g" {}
 }
+
+alias vim="$VIM_BIN"
+
+if has_cmd dircolors; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+fi
+
+if has_cmd zsh; then
+    alias tmux='SHELL=$(which zsh) tmux'
+fi
+
+if has_cmd git; then
+    alias gl='git log'
+    alias gs='git status'
+    alias ga='git add -A'
+    alias gc='git commit'
+    alias gp='git push'
+        
+    function gacp() {
+        message="${1:-auto}"
+        git add -A && git commit -m "$message" && git push
+    }
+fi
