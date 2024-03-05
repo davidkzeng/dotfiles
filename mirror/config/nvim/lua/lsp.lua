@@ -105,6 +105,9 @@ local servers = {
         procMacro = {
           enable = true
         },
+        diagnostics = {
+          disabled = { 'inactive-code' }
+        }
       }
     }
   },

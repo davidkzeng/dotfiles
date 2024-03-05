@@ -11,6 +11,9 @@ alias szrc="source ~/.zshrc"
 autoload -Uz colors && colors
 
 # history
+if [[ ! -e "$XDG_DATA_HOME/zsh" ]]; then
+  mkdir -p "$XDG_DATA_HOME/zsh"
+fi
 HISTFILE="$XDG_DATA_HOME/zsh/history"
 SAVEHIST=1000
 setopt appendhistory
