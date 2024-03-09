@@ -12,9 +12,8 @@ require('packer').startup(function(use)
   -- packer itself
   use 'wbthomason/packer.nvim'
 
-  -- top and bottom bar
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
+  -- bottom bar
+  use 'beauwilliams/statusline.lua'
 
   -- indentation
   use 'yggdroot/indentline'
@@ -23,10 +22,6 @@ require('packer').startup(function(use)
   -- vcs
   use 'mhinz/vim-signify'
   use 'tpope/vim-fugitive'
-
-  -- sessions
-  use 'xolox/vim-session'
-  use 'xolox/vim-misc'
 
   -- better buffer closing
   use 'moll/vim-bbye'
@@ -71,12 +66,6 @@ require('packer').startup(function(use)
   end
 end)
 
--- vim-airline settings
-vim.g['airline#extensions#tabline#enabled'] = 1
-vim.g['airline#extensions#tabline#buffer_nr_show'] = 1
-vim.g['airline#extensions#whitespace#checks'] = {}
-vim.g.airline_theme = 'molokai'
-
 -- indentline settings
 vim.g.indentLine_conceallevel = 1
 vim.g.indentLine_fileTypeExclude = { 'markdown', 'json' }
@@ -93,11 +82,6 @@ vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
 
 -- vim-signify settings
 vim.g.signify_vcs_list = { 'git' }
-
--- vim-session settings
-vim.g.session_autosave = 0
-vim.g.session_autoload = 0
-vim.g.session_directory = datahome .. '/sessions'
 
 -- vim-bbye settings
 nnoremap('<leader>qb', ':Bdelete<CR>')
