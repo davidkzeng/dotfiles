@@ -26,7 +26,6 @@
                 git
                 sqlite
                 gnumake
-                linuxPackages.perf
                 sumneko-lua-language-server
                 patchelf
 

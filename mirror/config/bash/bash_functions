@@ -47,6 +47,10 @@ function replace() {
     rg --files-with-matches "${1}" ${3} | xargs -I {} sed -r -i "s/${1}/${2}/g" {}
 }
 
+function hgrep() {
+    head -n 1; grep ${1}
+}
+
 alias vim="$VIM_BIN"
 
 if has_cmd dircolors; then

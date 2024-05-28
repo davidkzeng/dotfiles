@@ -58,7 +58,7 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter'
 
   -- tabnine
-  -- use { 'codota/tabnine-nvim', run = "./dl_binaries.sh" }
+  use { 'codota/tabnine-nvim', run = "./dl_binaries.sh" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   if Packer_bootstrap then
@@ -153,18 +153,16 @@ require('nvim-treesitter.configs').setup {
   }
 }
 
---[[
 -- tabnine settings
 require('tabnine').setup({
   disable_auto_comment = true,
   accept_keymap = "<C-]>",
-  dismiss_keymap = "<C-[>",
+  dismiss_keymap = "<C-a>",
   debounce_ms = 800000,
   suggestion_color = { gui = "#808080", cterm = 244 },
   exclude_filetypes = { "TelescopePrompt", "NvimTree" },
   log_file_path = "/tmp/tabnine.log", -- absolute path to Tabnine log file
 })
---]]
 
 -- molokai settings
 vim.g.molokai_original = 1
