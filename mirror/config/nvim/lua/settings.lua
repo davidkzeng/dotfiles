@@ -6,7 +6,6 @@ vim.o.cursorline = true
 
 -- silence bells
 vim.o.visualbell = false
-vim.o.t_vb = ''
 
 -- indentation
 vim.o.tabstop = 4
