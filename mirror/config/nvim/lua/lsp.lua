@@ -89,11 +89,11 @@ end
 
 local servers = {
   pylsp = {
-    cmd = { 'pylsp', '-vv', '--log-file', '/tmp/lsp_python.log' },
+    cmd = { 'pylsp', '-vvv', '--log-file', '/tmp/lsp_python.log' },
     settings = {
       pylsp = {
         plugins = {
-          ruff = { enabled = true, format = { 'E', 'W', 'F' } },
+          ruff = { enabled = true, formatEnabled = true, format = { 'E', 'W', 'F' } },
         },
       }
     }
