@@ -53,6 +53,7 @@ to_link=(
     vimrc
     profile
     bash_profile
+    zprofile
     bashrc
     zshrc
     config/bash
