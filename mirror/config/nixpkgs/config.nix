@@ -9,6 +9,7 @@
 
                 # core dev environment
                 neovim
+                helix
                 tmux
                 zsh
 
@@ -24,7 +25,6 @@
 
                 # dev languages, tools
                 git
-                sqlite
                 gnumake
                 sumneko-lua-language-server
                 patchelf

@@ -18,9 +18,12 @@ function date_epoch() {
     elif (( $ts < $limit * 1000 )); then
         printf -v millis "%03d" $((ts % 1000))
         date -d @$(($ts / 1000)).$millis --utc +"%Y/%m/%d %T.%3N %Z"
-    else
+    elif (( $ts < $limit * 1000000 )); then
         printf -v micros "%06d" $((ts % 1000000))
         date -d @$(($ts / 1000000)).$micros --utc +"%Y/%m/%d %T.%6N %Z"
+    else
+        printf -v nanos "%09d" $((ts % 1000000000))
+        date -d @$(($ts / 1000000000)).$nanos --utc +"%Y/%m/%d %T.%9N %Z"
     fi
 }
 

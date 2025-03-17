@@ -64,6 +64,7 @@ to_link=(
     config/Code/User/settings.json
     config/Code/User/keybindings.json
     config/python
+    config/helix
     ssh/config
 )
 for file in "${to_link[@]}"; do

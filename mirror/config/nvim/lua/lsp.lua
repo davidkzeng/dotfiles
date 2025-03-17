@@ -88,21 +88,31 @@ local function on_attach(_, bufnr)
 end
 
 local servers = {
-  pylsp = {
-    cmd = { 'pylsp', '-vvv', '--log-file', '/tmp/lsp_python.log' },
-    settings = {
-      pylsp = {
-        plugins = {
-          ruff = { enabled = true, formatEnabled = true, format = { 'E', 'W', 'F' } },
-        },
+  ruff = {
+    trace = 'messages',
+    init_options = {
+      settings = {
+        configurationPreference = "filesystemFirst",
+        logLevel = 'debug',
+        logFile = '/tmp/lsp_ruff.log',
+        lint = { select = { 'E', 'W', 'F' } },
       }
     }
+  },
+  pylsp = {
+    cmd = { 'pylsp', '-vvv', '--log-file', '/tmp/lsp_python.log' },
+    settings = {},
   },
   rust_analyzer = {
     cmd = { 'rust-analyzer', '--log-file', '/tmp/lsp_rust.log' },
     settings = {
       ['rust-analyzer'] = {
         procMacro = {
+          ignored = {
+            leptos_macro = {
+              "server"
+            }
+          },
           enable = true
         },
         diagnostics = {
