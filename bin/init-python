@@ -4,6 +4,8 @@
 # 1. need to install system dependencies expected by packages (e.x zlib)
 # 2. pip incompatibility
 
+sudo apt update
+
 if ! dpkg -s python3-pip > /dev/null; then
     sudo apt install python3-pip
 fi

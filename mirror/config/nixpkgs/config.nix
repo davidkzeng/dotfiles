@@ -5,7 +5,6 @@
             paths = [
                 # nix related
                 nix-tree
-                nixfmt
 
                 # core dev environment
                 neovim
@@ -21,7 +20,6 @@
 
                 # data manipulation
                 jq
-                xsv
 
                 # dev languages, tools
                 git
@@ -36,17 +34,6 @@
                 screenfetch
             ];
             pathsToLink = [ "/share" "/bin" ];
-            extraOutputsToInstall = [ "man" "doc" ];
-        };
-
-        myExtraPackages = pkgs.buildEnv {
-            name = "my-extra-packages";
-            paths = [
-                (texlive.combine {
-                    inherit (texlive) scheme-medium enumitem;
-                })
-            ];
-            pathsToLink = [ "/share/man" "/share/doc" "/bin" ];
             extraOutputsToInstall = [ "man" "doc" ];
         };
     };

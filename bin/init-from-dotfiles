@@ -5,17 +5,15 @@
 set -eu -o pipefail
 
 function usage() {
-    echo "Usage: ./init [--install | -i] [--force-link | -f] [--config | -c]"
+    echo "Usage: ./init [--install | -i] [--force-link | -f]"
 }
 
 install=0
 force_link=""
-config="default"
 while (( "$#" )); do
     case $1 in
         -i | --install) install=1 ;;
         -f | --force-link) force_link="--force-link" ;;
-        -c | --config) shift; config="$1" ;;
         -h | --help) usage; exit ;;
         *) usage; exit 1 ;;
     esac
@@ -24,8 +22,6 @@ done
 
 bin_dir="$(dirname "$(realpath "$0")")"
 dotfiles_dir="$(dirname "$bin_dir")"
-
-. "${bin_dir}/config/${config}.sh"
 
 if [[ -z "$(ls -A $dotfiles_dir/custom/research-tools)" ]]; then
     cd "$dotfiles_dir" && git submodule update --init
@@ -44,9 +40,6 @@ if [[ $install -eq 1 ]]; then
 
     # nix packages install
     nix-env --install -A nixpkgs.myPackages
-    if [[ "${FULL_INSTALL}" -eq 1 ]]; then
-        nix-env --install -A nixpkgs.myExtraPackages
-    fi
 
     # setup PATH, other environment variables
     . ~/.profile

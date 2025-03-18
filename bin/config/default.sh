@@ -1,1 +1,0 @@
-export FULL_INSTALL=1
