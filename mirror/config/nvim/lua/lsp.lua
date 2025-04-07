@@ -116,7 +116,8 @@ local servers = {
           enable = true
         },
         diagnostics = {
-          disabled = { 'inactive-code' }
+          disabled = { 'inactive-code' },
+          refreshSupport = false
         }
       }
     }
