@@ -13,6 +13,45 @@ select = "underline"
 hidden = false
 
 [keys.normal]
+C-r = ":config-reload"
+
+P = ["paste_after", "collapse_selection"]
+p = ["paste_before", "collapse_selection"]
+
 A-d = "delete_selection"
 d = "delete_selection_noyank"
-D = "@xd"
+D = ["extend_to_line_bounds", "delete_selection_noyank"]
+
+w = ["move_next_word_start", "move_char_right", "collapse_selection"]
+W = ["move_next_long_word_start", "move_char_right", "collapse_selection"]
+e = ["move_next_word_end", "collapse_selection"]
+E = ["move_next_long_word_end", "collapse_selection"]
+b = ["move_prev_word_start", "collapse_selection"]
+B = ["move_prev_long_word_start", "collapse_selection"]
+
+0 = "goto_line_start"
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+G = "goto_file_end"
+"%" = "match_brackets"
+
+"*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
+"#" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_prev"]
+
+esc = ["collapse_selection", "keep_primary_selection"]
+
+[keys.insert]
+esc = ["collapse_selection", "normal_mode"]
+
+[keys.select]
+0 = "goto_line_start"
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+G = "goto_file_end"
+"%" = "match_brackets"
+
+esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
+
+[keys.normal.space]
+h = "hover"
+k = "select_references_to_symbol_under_cursor"
