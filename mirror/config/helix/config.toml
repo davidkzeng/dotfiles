@@ -1,14 +1,18 @@
-theme = "monokai"
+theme = "monokai_custom"
 
 [editor]
 true-color = true
 line-number = "relative"
-mouse = true
+cursorline = true
 
 [editor.cursor-shape]
 insert = "bar"
-normal = "block"
 select = "underline"
 
 [editor.file-picker]
 hidden = false
+
+[keys.normal]
+A-d = "delete_selection"
+d = "delete_selection_noyank"
+D = "@xd"
